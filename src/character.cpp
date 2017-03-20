@@ -8,6 +8,8 @@
  *
  */
 
+#include "character.h"
+
 public Character::Character(){
   _position = vec3(0,0,0);
   _speed = vec3(0,0,0);
