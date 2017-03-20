@@ -153,8 +153,8 @@ int main(void)
  	GLchar * vSource = new GLchar[10000];
  	GLchar * fSource = new GLchar[10000];
 
- 	file_contents("../resources/myOwnGLSLProg.v.glsl", &vLength, vSource);
- 	file_contents("../resources/myOwnGLSLProg.f.glsl", &fLength, fSource);
+ 	file_contents("../shaders/myOwnGLSLProg.v.glsl", &vLength, vSource);
+ 	file_contents("../shaders/myOwnGLSLProg.f.glsl", &fLength, fSource);
 
 	cout << vLength << endl;
 	cout << fLength << endl;
