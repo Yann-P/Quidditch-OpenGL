@@ -1,6 +1,6 @@
 /*
  * Classe character
- * @name : character.cpp
+ * @file : character.cpp
  * @author : Pierrick Bouvier
  * @brief :
  *
