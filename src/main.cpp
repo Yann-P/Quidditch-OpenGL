@@ -10,8 +10,8 @@
 using namespace std;
 
 
- void initGLFW()
- {
+void initGLFW()
+{
     int width = 500, height=500;
 
  	if (!glfwInit())
@@ -172,7 +172,6 @@ int main(void)
  	GLchar * vSource = new GLchar[10000];
  	GLchar * fSource = new GLchar[10000];
  	GLuint program;
-
 
  	createVBO(positions, 3,2,vbo);
  	createIBO(indices,3, ibo);
