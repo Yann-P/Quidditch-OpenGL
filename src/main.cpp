@@ -107,21 +107,21 @@ void file_contents(string chemin, int* longueur, GLchar * res)
 }
 
 
-void createVBO(float* positions, GLuint * vbo)
+void createVBO(float* attributes,int nbVertices,int nbComponents, GLuint & vbo)
 {
 
-    glGenBuffers(1,vbo);
- 	glBindBuffer(GL_ARRAY_BUFFER, *vbo);
- 	glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+    glGenBuffers(1,&vbo);
+ 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+ 	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*nbComponents*nbVertices, attributes, GL_STATIC_DRAW);
  	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 }
 
-void createIBO(int* indices, GLuint* ibo)
+void createIBO(unsigned int* indices,int nbIndices,  GLuint & ibo)
 {
- 	glGenBuffers(1,ibo);
- 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *ibo);
- 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+ 	glGenBuffers(1,&ibo);
+ 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+ 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*nbIndices, indices, GL_STATIC_DRAW);
  	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
@@ -133,17 +133,17 @@ int main(void)
  	init();
 
  	float positions[] = {0.0f,0.0f,0.0f,1.0f,1.0f,1.0f};
- 	int indices[] = {0, 1, 2};
+ 	unsigned int indices[] = {0, 1, 2};
 
     GLuint vbo;
- 	createVBO(positions, &vbo);
- 	//glGenBuffers(1,&vbo);
+ 	createVBO(positions, 3,2,vbo);
+ 	//glGenBuffers(1,vbo);
  	//glBindBuffer(GL_ARRAY_BUFFER, vbo);
  	//glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
  	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     GLuint ibo;
- 	createIBO(indices, &ibo);
+ 	createIBO(indices,3, ibo);
  	//glGenBuffers(1,&ibo);
  	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
  	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
