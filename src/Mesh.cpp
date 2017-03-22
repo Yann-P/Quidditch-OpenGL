@@ -9,18 +9,28 @@ Mesh::Mesh(float* positions, unsigned int *indices)
 Mesh::Mesh(const Mesh& other)
 {
     memcpy(this, &other, sizeof(Mesh));
-    memcpy(this, &other, sizeof(Mesh));
 }
 
-Mesh& Mesh::operator=(const Mesh& rhs)
+Mesh& Mesh::operator=(const Mesh& other)
 {
-    if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
+    if (this == &other)
+        return *this;
+    memcpy(this, &other, sizeof(Mesh));
     return *this;
 }
 
+float* Mesh::getPositions()
+{
+    return _positions;
+}
+
+unsigned int* Mesh::getIndices()
+{
+    return _indices;
+}
 
 Mesh::~Mesh()
 {
-    //dtor
+    delete _positions;
+    delete _indices;
 }

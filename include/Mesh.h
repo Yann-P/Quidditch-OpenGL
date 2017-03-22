@@ -1,18 +1,29 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include <cstring>
+
 
 class Mesh
 {
     public:
-        Mesh();
+        Mesh(float*, unsigned int*);
+        Mesh(const Mesh& );
+        Mesh& operator=(const Mesh& );
+
+        float* getPositions();
+        unsigned int * getIndices();
+
         ~Mesh();
-        Mesh(const Mesh& other);
-        Mesh& operator=(const Mesh& other);
+
+
     protected:
+
+
     private:
         float* _positions;
-        int* _indices;
+        unsigned int* _indices;
+
 };
 
 #endif // MESH_H
