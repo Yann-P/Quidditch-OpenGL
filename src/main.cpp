@@ -1,17 +1,47 @@
 #include <openglAPI.h>
 #include <Mesh.h>
+#include <../include/fleche.h>
+#include <../include/pave.h>
 
 int main(void)
  {
+
+/*
+    Fleche test();
+    int vec[3];
+    vec[0]=1;
+    vec[1]=2;
+    vec[2]=3;
+    Pave test2(vec,3,4,5);
+*/
+
+
+
+
+
  	OGL::init();
 
- 	float positions[] = {0.2f,0.2f,0.2f,1.0f,1.0f,1.0f};
- 	float pos2[] = {0.0f , 0.0f, 1.0f, -1.0f, 0.0f,-1.0f};
+    float positions[] = {0.2f,0.2f,0.2f,1.0f,1.0f,1.0f};
+    float pos2[] = {0.0f , 0.0f, 1.0f, -1.0f, 0.0f,-1.0f};
  	unsigned int indices[] = {0, 1, 2};
  	//unsigned int ind2[] = {0, 1, 2};
 
- 	Mesh test(positions, indices);
- 	Mesh test2( pos2, indices);
+    float positionsPave[] = {0.2f,0.2f,0.2f,1.0f,1.0f,1.0f, 0.0f, 0.0f};
+    unsigned int indicesPave[] = {};
+
+
+    Mesh test(positionsPave, indicesPave);
+    //Mesh test2( positionsPave, indicesPave);
+
+    //Mesh test(positions, indices);
+    Mesh test2( pos2, indices);
+
+
+
+
+
+
+
 
     GLuint vbo;
     GLuint vbo2;
