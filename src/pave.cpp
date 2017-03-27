@@ -8,7 +8,12 @@
 using namespace std;
 
 
-
+Pave::Obstacle(vec3 baseCenter, int heigh, int width, int lenght){
+    _heigh = heigh; // hauteur y
+    _width = width; // largeur x
+    _lenght = lenght; // longueur z
+    _baseCenterPosition = baseCenter; // position du centre de la face du bas
+}
 
 
 bool Pave::detectCollision(vec3 object){

@@ -19,7 +19,7 @@ public:
     vec3 _direction; //unused
     vec3 _rotation; //unused
 
-    Obstacle();
+    Obstacle(vec3, int, int, int);
     ~Obstacle();
 
     detectCollision(vec3 object);
