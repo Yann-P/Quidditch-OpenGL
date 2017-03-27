@@ -3,15 +3,16 @@
  * @author : vtran
  */
 
-#include "../include/fleche.h"
+#include "fleche.h"
 #include <stdio.h>
+
 using namespace std;
 
 Fleche::Fleche(){
     cout << "++Fleche()" << endl;
 }
 
-Fleche::~fleche(){
+Fleche::~Fleche(){
     cout << "--Fleche()" << endl;
 }
 

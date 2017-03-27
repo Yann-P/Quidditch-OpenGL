@@ -1,4 +1,5 @@
 #include <openglAPI.h>
+#include <iterator>
 
 using namespace std;
 
@@ -13,23 +14,27 @@ namespace OGL
 // 	make_resources();
  }
 
-void renderFrame(GLuint program, GLuint vao)
+void renderFrame(ObjectsToDraw & objs)
 {
     //--------- clear the color-buffer and the depth-buffer, set some states
     glClearColor(0.1, 0.1, 0.1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     //--------- bind shader program [and textures] (see later...)
-    glUseProgram(program);
+    map <string, GLuint>::iterator it;
+    for (it=objs.vaoList.begin(); it!=objs.vaoList.end();it++)
+    {
+
+        glUseProgram(objs.programList[it->second]);
     //--------- Activate the VAO and call the drawing routine
-    glBindVertexArray(vao);
+        glBindVertexArray(it->second);
 
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-
-    GLFWwindow* window = glfwGetCurrentContext();
-
-    glfwPollEvents();
-    glfwSwapBuffers(window);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+    }
+//    GLFWwindow* window = glfwGetCurrentContext();
+//
+//    glfwPollEvents();
+//    glfwSwapBuffers(window);
 
     //--------- Clean state again
     glBindVertexArray(0);

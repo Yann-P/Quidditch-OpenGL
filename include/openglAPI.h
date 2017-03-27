@@ -6,12 +6,13 @@
 #include <fstream>
 #include <iostream>
 #include <GLFW/glfw3.h>
+#include <ObjectsToDraw.h>
 
 namespace OGL
 {
 
 void init();
-void renderFrame(GLuint, GLuint);
+void renderFrame(ObjectsToDraw);
 void file_contents(std::string chemin, int* longueur, GLchar * res);
 void createVBO(float* attributes,int nbVertices,int nbComponents, GLuint & vbo);
 void createIBO(unsigned int* indices,int nbIndices,  GLuint & ibo);

@@ -5,14 +5,14 @@
  * @author : vtran
  */
 
-#ifndef FLECHE.H
-#define FLECHE.H
+#ifndef FLECHE_H
+#define FLECHE_H
 
 class Fleche{
 public:
 
     Fleche();
-    ~fleche();
+    ~Fleche();
 
     vec3 getDirection();
     void updateDirection(vec3 playerPosition, vec3 snitchPosition);

@@ -1,5 +1,6 @@
 #include <openglAPI.h>
 #include <Mesh.h>
+#include <ObjectsToDraw.h>
 
 int main(void)
  {
@@ -23,10 +24,17 @@ int main(void)
  	GLchar * fSource = new GLchar[10000];
  	GLuint program;
 
+ 	ObjectsToDraw reg;
+
  	OGL::createVBO(test.getPositions(), 3,2,vbo);
  	OGL::createVBO(test2.getPositions(), 3,2,vbo2);
  	OGL::createIBO(test.getIndices(),3, ibo);
  	OGL::createIBO(test2.getIndices(),3, ibo);
+
+    reg.addVBO("vboTest", vbo);
+    reg.addVBO("vboTest2", vbo2);
+    reg.addIBO("iboTest", ibo);
+    reg.addIBO("iboTest2", ibo);
 
  	OGL::file_contents("../shaders/myOwnGLSLProg.v.glsl", &vLength, vSource);
  	OGL::file_contents("../shaders/myOwnGLSLProg.f.glsl", &fLength, fSource);
@@ -36,12 +44,17 @@ int main(void)
     OGL::createVAO(program,ibo, vbo, vao);
     OGL::createVAO(program,ibo, vbo2, vao2);
 
+    reg.addProgram(vao, program);
+    reg.addProgram(vao2, program);
+
     GLFWwindow* window = glfwGetCurrentContext();
 
  	while (!glfwWindowShouldClose (window))
  	{
-        OGL::renderFrame(program, vao);
- 		//OGL::renderFrame();
+        //OGL::renderFrame(program, vao);
+ 		OGL::renderFrame(reg);
+ 		glfwPollEvents();
+        glfwSwapBuffers(window);
 
 	}
 
