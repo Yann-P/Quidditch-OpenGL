@@ -12,7 +12,7 @@ LINK_DIRECTORIES("~/local_install/lib")
 LINK_DIRECTORIES("/usr/local/lib")
 INCLUDE_DIRECTORIES("/usr/local/include")
 INCLUDE_DIRECTORIES("~/local_install/include")
-###  Settings  ###}}}
+###  Settings  ###}}}i
 
 ###  OpenGL  ###{{{
 find_package(OpenGL)
@@ -45,9 +45,9 @@ link_directories(${ASSIMP_LIBRARY_DIRS})
 
 
 
-include_directories(include)
+include_directories(./include)
 #link_directories(src)
-add_executable(Quidditch src/main.cpp)
+add_executable(Quidditch src/main.cpp src/openglAPI.cpp include/openglAPI.h src/Mesh.cpp include/Mesh.h)
 target_link_libraries(Quidditch  ${GL_LIBRARIES} ${APPLE_FRAMEWORKS} ${GLFW3_STATIC_LIBRARIES} ${ASSIMP_LIBRARIES})
 
 
