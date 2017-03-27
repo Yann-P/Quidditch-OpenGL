@@ -47,7 +47,7 @@ link_directories(${ASSIMP_LIBRARY_DIRS})
 
 include_directories(./include)
 #link_directories(src)
-add_executable(Quidditch src/main.cpp src/openglAPI.cpp include/openglAPI.h src/Mesh.cpp include/Mesh.h)
+add_executable(Quidditch src/main.cpp src/openglAPI.cpp include/openglAPI.h src/Mesh.cpp src/pave.cpp src/fleche.cpp include/Mesh.h include/pave.h include/fleche.h)
 target_link_libraries(Quidditch  ${GL_LIBRARIES} ${APPLE_FRAMEWORKS} ${GLFW3_STATIC_LIBRARIES} ${ASSIMP_LIBRARIES})
 
 

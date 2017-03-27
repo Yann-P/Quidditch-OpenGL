@@ -5,25 +5,26 @@
 
 #include "../include/pave.h"
 #include <stdio.h>
+#include <iostream>
 using namespace std;
 
 
-Pave::Obstacle(vec3 baseCenter, int heigh, int width, int lenght){
-    _heigh = heigh; // hauteur y
-    _width = width; // largeur x
-    _lenght = lenght; // longueur z
+Pave::Pave(int baseCenter[3], int height, int width, int lenght){
+    _height = height; // hauteur y (1)
+    _width = width; // largeur x (0)
+    _lenght = lenght; // longueur z (2)
     _baseCenterPosition = baseCenter; // position du centre de la face du bas
 }
 
 
-bool Pave::detectCollision(vec3 object){
+bool Pave::detectCollision(int object[3]){
     cout << "detectCollision()" << endl;
-    if (object.y>=_baseCenterPosition.y
-            && object.y<=_baseCenterPosition+_heigh
-            && object.x>=_baseCenterPosition-_width/2
-            && object.x<=_baseCenterPosition+_width/2
-            && object.z>=_baseCenterPosition-_lenght/2
-            && object.z<=_baseCenterPosition+_lenght/2){
+    if (object[1]>=_baseCenterPosition[1]
+            && object[1]<=_baseCenterPosition[1]+_height
+            && object[0]>=_baseCenterPosition[0]-_width/2
+            && object[0]<=_baseCenterPosition[0]+_width/2
+            && object[2]>=_baseCenterPosition[2]-_lenght/2
+            && object[2]<=_baseCenterPosition[2]+_lenght/2){
         return true;
     }
     return false;

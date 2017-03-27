@@ -5,13 +5,13 @@
  * @author : vtran
  */
 
-#ifndef OBSTACLE.H
-#define OBSTACLE.H
+#ifndef OBSTACLE_H
+#define OBSTACLE_H
 
 class Obstacle{
 public:
 
-    bool detectCollision(vec3 object);
+    bool detectCollision(int* object);
 
     Obstacle();
     ~Obstacle();

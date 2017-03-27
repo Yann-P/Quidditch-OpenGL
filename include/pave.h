@@ -5,24 +5,22 @@
  * @author : vtran
  */
 
-#ifndef PAVE.H
-#define PAVE.H
+#ifndef PAVE_H
+#define PAVE_H
 
-#include "obstacle.h"
+//#include "obstacle.h"
 
-class Pave : public Obstacle{
+class Pave /*: public Obstacle*/{
 public:
-    vec3 _baseCenterPosition;
-    int _heigh;
+    int* _baseCenterPosition;
+    int _height;
     int _width;
     int _lenght;
-    vec3 _direction; //unused
-    vec3 _rotation; //unused
 
-    Obstacle(vec3, int, int, int);
-    ~Obstacle();
+    Pave(int*, int, int, int);
+    //~Pave();
 
-    detectCollision(vec3 object);
+    bool detectCollision(int object[3]);
 
 
 private:
