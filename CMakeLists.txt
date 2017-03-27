@@ -49,6 +49,7 @@ include_directories(./include)
 #link_directories(src)
 file (GLOB_RECURSE source_files src/* include/*)
 add_executable(Quidditch ${source_files})
+
 target_link_libraries(Quidditch  ${GL_LIBRARIES} ${APPLE_FRAMEWORKS} ${GLFW3_STATIC_LIBRARIES} ${ASSIMP_LIBRARIES})
 
 

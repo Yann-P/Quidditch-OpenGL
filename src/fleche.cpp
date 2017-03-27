@@ -5,24 +5,21 @@
 
 #include "fleche.h"
 #include <stdio.h>
-
+#include <iostream>
 using namespace std;
 
 Fleche::Fleche(){
     cout << "++Fleche()" << endl;
 }
 
-Fleche::~Fleche(){
-    cout << "--Fleche()" << endl;
-}
 
-vec3 Fleche::getDirection(){
+int* Fleche::getDirection(){
     cout << "getDirection()" << endl;
     return _direction;
 }
 
-Fleche::updateDirection(vec3 playerPosition, vec3 snitchPosition){
+void Fleche::updateDirection(int* playerPosition, int* snitchPosition){
     cout << "updateDirection()" << endl;
-    _direction = snitchPosition - playerPosition;
+    //_direction = snitchPosition - playerPosition; //a finir plus tard
 }
 

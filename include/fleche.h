@@ -12,14 +12,13 @@ class Fleche{
 public:
 
     Fleche();
-    ~Fleche();
 
-    vec3 getDirection();
-    void updateDirection(vec3 playerPosition, vec3 snitchPosition);
+    int* getDirection();
+    void updateDirection(int* playerPosition, int* snitchPosition);
 
 private:
 
-    vec3 _direction;
+    int* _direction;
 
 };
 
