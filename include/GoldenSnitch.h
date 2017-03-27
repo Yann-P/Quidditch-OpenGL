@@ -9,11 +9,19 @@
 #define GOLDENSNITCH_H
 
 
+
+#define SNITCH_MAX_SPEED 10
+
+
 class GoldenSnitch {
 private:
-	Vector3 _position;
-	Vector3 _speed;
-	Vector3 _rotation;
+	vec3 _position;	
+
+	Vector3 _forward;
+	Vector3 _up;
+	Vector3 _right;
+
+	float _speed;
 	float _scale;
 
 
@@ -21,10 +29,10 @@ public:
 	GoldenSnitch();
 	~GoldenSnitch();
 	void draw();
-	void update();
+	void update(float dt);
 
-	Vector3 getPosition();
-	Vector3 getSpeed();
+	vec3 getPosition();
+	float getSpeed();
 
 };
 
