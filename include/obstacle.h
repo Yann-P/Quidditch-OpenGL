@@ -8,13 +8,14 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
+#include <glm/glm.hpp>
+
 class Obstacle{
 public:
 
-    bool detectCollision(int* object);
+    bool detectCollision(glm::vec3);
 
     Obstacle();
-    ~Obstacle();
 
 private:
 

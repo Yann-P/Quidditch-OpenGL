@@ -9,19 +9,20 @@
  */
 
 #include "character.h"
+#include <glm/glm.hpp>
 
-public Character::Character(){
-  _position = vec3(0,0,0);
-  _speed = vec3(0,0,0);
+Character::Character(){
+  _position = glm::vec3(0,0,0);
+  _speed = glm::vec3(0,0,0);
   _maxSpeed = 30;
-  _accel = vec3(0,0,0);
+  _accel = glm::vec3(0,0,0);
 }
 
-vec3 Character::getPosition(){
+glm::vec3 Character::getPosition(){
   return _position;
 }
 
-vec3 Character::getSpeed(){
+glm::vec3 Character::getSpeed(){
   return _speed;
 }
 

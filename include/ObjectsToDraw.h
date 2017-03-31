@@ -2,6 +2,10 @@
 #define OBJECTSTODRAW_H
 
 #include <map>
+#include <utility>
+#include <GL/gl.h>
+#include <GLFW/glfw3.h>
+
 class ObjectsToDraw
 {
     public:
@@ -11,10 +15,15 @@ class ObjectsToDraw
         void addVBO(std::string nom, const GLuint & vbo);
         void addIBO(std::string nom, const GLuint & ibo);
         void addProgram(GLuint vao, const GLuint & program);
+
+        void drawAll();
+
         std::map <std::string, GLuint> vaoList;
         std::map <std::string, GLuint> vboList;
         std::map <std::string, GLuint> iboList;
         std::map <GLuint, GLuint> programList;
+
+
 
     protected:
     private:

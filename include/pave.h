@@ -9,6 +9,7 @@
 #define PAVE_H
 
 //#include "obstacle.h"
+#include <glm/glm.hpp>
 
 class Pave /*: public Obstacle*/{
 public:
@@ -20,7 +21,7 @@ public:
     Pave(int*, int, int, int);
     //~Pave();
 
-    bool detectCollision(int object[3]);
+    bool detectCollision(glm::vec3);
 
 
 private:

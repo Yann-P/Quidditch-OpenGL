@@ -3,27 +3,27 @@
  * \author Julien Lepasquier
  * \date 20/03/2017
  *
- */ 
+ */
 
 #include "GoldenSnitch.h"
-
+#include <glm/glm.hpp>
 
 GoldenSnitch::GoldenSnitch() {
-	vec3 _position = {0,0,0};
+	glm::vec3 _position = {0,0,0};
 	float _speed = 1;
-	vec3 _rotation = {0,0,0};
+	glm::vec3 _rotation = {0,0,0};
 	float _scale =  1;
 }
 
 
 GoldenSnitch::~GoldenSnitch() {
-	
+
 }
 
 
-void GoldenSnitch::_update(float dt) {
+void GoldenSnitch::update(float dt) {
 
-	speed *= 0.96; // Friction in space, suuuure...
+	_speed *= 0.96; // Friction in space, suuuure...
 
 	/*
 	 * @TODO : pour ralentir ou acceler
@@ -41,21 +41,21 @@ void GoldenSnitch::_update(float dt) {
 
 	int movement = rand() % 4;
 
-
-	_forward = _forward * cosf(rotationZ) + _right * sinf(rotationZ);
-	_right = _forward.cross(_up);
-
-	_right = _right * cosf(rotationY) + _up * sinf(rotationY);
-	_right.normalize();
-	_up = _right.cross(_forward);
-	_up.normalize();
-
-	_forward = _forward * cosf(rotationX) + _up * sinf(rotationX);
-	_forward.normalize();
-	_up = _right.cross(_forward);
-	_up.normalize();
-
-	_position += _forward * speed;
+//
+//	_forward = _forward * cosf(_rotationZ) + _right * sinf(_rotationZ);
+//	_right = _forward.cross(_up);
+//
+//	_right = _right * cosf(rotationY) + _up * sinf(_rotationY);
+//	_right.normalize();
+//	_up = _right.cross(_forward);
+//	_up.normalize();
+//
+//	_forward = _forward * cosf(rotationX) + _up * sinf(_rotationX);
+//	_forward.normalize();
+//	_up = _right.cross(_forward);
+//	_up.normalize();
+//
+//	_position += _forward * _speed;
 
 }
 
@@ -64,7 +64,7 @@ void GoldenSnitch::draw() {
 }
 
 
-vec3 GoldenSnitch::getPosition() {
+glm::vec3 GoldenSnitch::getPosition() {
 	return _position;
 }
 

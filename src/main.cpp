@@ -76,6 +76,8 @@ int main(void)
     OGL::createVAO(program,ibo, vbo, vao);
     OGL::createVAO(program,ibo, vbo2, vao2);
 
+    reg.addVAO("test1", vao);
+    reg.addVAO("test2", vao2);
     reg.addProgram(vao, program);
     reg.addProgram(vao2, program);
 
@@ -85,8 +87,7 @@ int main(void)
  	{
         //OGL::renderFrame(program, vao);
  		OGL::renderFrame(reg);
- 		glfwPollEvents();
-        glfwSwapBuffers(window);
+
 
 	}
 

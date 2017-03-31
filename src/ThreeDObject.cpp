@@ -1,6 +1,7 @@
 #include "ThreeDObject.h"
+#include <openglAPI.h>
 
-ThreeDObject::ThreeDObject(vao, program)
+ThreeDObject::ThreeDObject(GLuint vao, GLuint program)
 {
     _vao = vao;
     _program = program;

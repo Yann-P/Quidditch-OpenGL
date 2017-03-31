@@ -15,12 +15,13 @@
 #include "GoldenSnitch.h"
 #include "obstacle.h"
 #include <vector>
+#include <glm/glm.hpp>
 
 class Level{
 private:
-  Character _seeker;
-  GoldenSnitch _gsnitch;
-  std::Vector<Obstacle> _obstacles;
+  Character* _seeker;
+  GoldenSnitch* _gsnitch;
+  std::vector<Obstacle> _obstacles;
 
   bool _win;
 
@@ -28,8 +29,8 @@ public:
   Level();
   ~Level();
 
-  vec3 getCharacterSpeed();
-  vec3 getSnitchSpeed();
+  glm::vec3 getCharacterSpeed();
+  float getSnitchSpeed();
 
   void start();
   void newGame();
@@ -47,7 +48,7 @@ public:
 
 
 
-}
+};
 
 
 

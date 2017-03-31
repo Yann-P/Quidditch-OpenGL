@@ -9,52 +9,52 @@
  */
 
 #include "level.h"
+#include "obstacle.h"
+#include <glm/glm.hpp>
 using namespace std;
 
-public Level::Level(){
+Level::Level(){
   _seeker = new Character();
   _gsnitch = new GoldenSnitch();
   _win = false;
-  
-}
-
-public Level::~Level(){
-  for(int i=0; i<_obstacles.size();i++){
-    _obstacles[i].~Obstacles();
-  }
-}
-
-public vec3 Level::getCharacterSpeed(){
-  return _seeker.getSpeed();
-}
-
-public vec3 Level::getSnitchSpeed(){
-  return _gsnitch.getSpeed();
-}
-
-
-public void Level::start(){
 
 }
 
-public void Level::newGame(){
+//Level::~Level(){
+//
+//  for(int i=0; i<_obstacles.size();i++){
+//    _obstacles[i].~Obstacles();
+//  }
+//}
+
+glm::vec3 Level::getCharacterSpeed(){
+  return _seeker->getSpeed();
+}
+
+float Level::getSnitchSpeed(){
+  return _gsnitch->getSpeed();
+}
+
+
+void Level::start(){
 
 }
 
-public void Level::Draw(){
+void Level::newGame(){
 
 }
 
-public bool Level::collisionWithObstacle(){
 
-  vector<int>::iterator begin= _obstacles.begin();
-  vector<int>::iterator end= _obstacles.end();
+bool Level::collisionWithObstacle(){
 
-  while(begin!=end){
-    if(!(begin.detectCollision(_seeker.getPosition()) ) )
+  vector<Obstacle>::iterator itBegin= _obstacles.begin();
+  vector<Obstacle>::iterator itEnd= _obstacles.end();
+
+  while(itBegin!=itEnd){
+    if(!((*itBegin).detectCollision(_seeker->getPosition()) ) )
       {
 	return true;
       }
-    ++begin;
+    ++itBegin;
   }
 }

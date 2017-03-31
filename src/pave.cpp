@@ -17,7 +17,7 @@ Pave::Pave(int baseCenter[3], int height, int width, int lenght){
 }
 
 
-bool Pave::detectCollision(int object[3]){
+bool Pave::detectCollision(glm::vec3 object){
     cout << "detectCollision()" << endl;
     if (object[1]>=_baseCenterPosition[1]
             && object[1]<=_baseCenterPosition[1]+_height
