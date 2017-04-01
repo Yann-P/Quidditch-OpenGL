@@ -15,6 +15,7 @@ int main(void)
  	OGL::init();
 
  	Level level;
+ 	
  	Broom broom;
 
  	level.addDrawable(&broom);
@@ -28,14 +29,9 @@ int main(void)
 
  	while (!glfwWindowShouldClose(window)) {
  		level.drawLevel();
- 		//render(shader, vao, balai.getIndices().size(), start);
 	}
 
 	glfwTerminate();
 
-
-
   	return 0;
 }
-
-// vim: ft=cpp foldmethod=marker:
