@@ -16,33 +16,10 @@ namespace OGL
 // 	make_resources();
  }
 
-void renderFrame(ObjectsToDraw & objs)
-{
-    objs.drawAll();
-//    //--------- clear the color-buffer and the depth-buffer, set some states
-//    glClearColor(0.1, 0.1, 0.1, 1);
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    glEnable(GL_DEPTH_TEST);
-//    //--------- bind shader program [and textures] (see later...)
-//    map <string, GLuint>::iterator it;
-//    for (it=objs.vaoList.begin(); it!=objs.vaoList.end();it++)
-//    {
-//
-//        glUseProgram(objs.programList[it->second]);
-//    //--------- Activate the VAO and call the drawing routine
-//        glBindVertexArray(it->second);
-//
-//        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-//    }
-////    GLFWwindow* window = glfwGetCurrentContext();
-////
-////    glfwPollEvents();
-////    glfwSwapBuffers(window);
-//
-//    //--------- Clean state again
-//    glBindVertexArray(0);
-//    glUseProgram(0);
-}
+// void renderFrame(ObjectsToDraw & objs)
+// {
+//     objs.drawAll();
+// }
 
 
 void file_contents(string chemin, int* longueur, GLchar * res)
@@ -121,44 +98,44 @@ GLuint createShaderProgram(GLchar* vSource, const GLint vLength, GLchar* fSource
 
 void initGLFW()
 {
-int width = 500, height=500;
+    int width = 500, height=500;
 
-if (!glfwInit())
-{
-    glfwTerminate();
-    return;
-}
-glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,4);
-glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,4);
-glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,GL_TRUE);
-glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
+    if (!glfwInit())
+    {
+        glfwTerminate();
+        return;
+    }
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,4);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
 
-const GLFWvidmode *screen_info =  glfwGetVideoMode(glfwGetPrimaryMonitor());
+    const GLFWvidmode *screen_info =  glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-width = screen_info->width;
-height = screen_info->height;
+    width = screen_info->width;
+    height = screen_info->height;
 
-GLFWwindow* window = glfwCreateWindow(width, height, "Triangle application",NULL,NULL);
+    GLFWwindow* window = glfwCreateWindow(width, height, "Triangle application",NULL,NULL);
 
-if (!window)
-{
-    std::cerr << "Could not open window" << std::endl;
-    glfwTerminate();
-    return;
-}
+    if (!window)
+    {
+        std::cerr << "Could not open window" << std::endl;
+        glfwTerminate();
+        return;
+    }
 
-glfwMakeContextCurrent(window);
-}
+    glfwMakeContextCurrent(window);
+    }
 
-void initGLEW()
-{
-glewExperimental = GL_TRUE;
-GLenum GlewInitResult = glewInit();
+    void initGLEW()
+    {
+    glewExperimental = GL_TRUE;
+    GLenum GlewInitResult = glewInit();
 
-if (GlewInitResult != GLEW_OK)
-{
-    std::cerr << "ERROR" << std::endl;
-    glfwTerminate();
-    return;
-}
+    if (GlewInitResult != GLEW_OK)
+    {
+        std::cerr << "ERROR" << std::endl;
+        glfwTerminate();
+        return;
+    }
 }

@@ -46,7 +46,6 @@ link_directories(${ASSIMP_LIBRARY_DIRS})
 
 
 include_directories(./include)
-#link_directories(src)
 file (GLOB_RECURSE source_files src/* include/*)
 add_executable(Quidditch ${source_files})
 
