@@ -7,7 +7,7 @@
 class Texture {
 
 public:
-	Texture(std::string &);
+	Texture(const std::string &);
 	operator GLuint();
 
 private:

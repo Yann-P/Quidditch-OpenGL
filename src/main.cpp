@@ -20,10 +20,6 @@ int main(void)
 
  	level.addDrawable(&broom);
 
- 	Mesh balai("../blend/balai.blend");
- 	Shader shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl");
-
-
 
 	GLFWwindow* window = glfwGetCurrentContext();
 

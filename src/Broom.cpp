@@ -1,20 +1,27 @@
 #include <Broom.h>
 
 Broom::Broom() : Drawable(
-	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"), 
-	new Mesh("../blend/balai.blend")
-) {
+	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+	new Mesh("../blend/balai.blend"),
+	new Texture("../texture/texture_peut_etre.tga")
+){
 
 }
 
 void Broom::draw(long int t) {
 
-	std::cout << "shader : " << *_shader << std::endl;
-	std::cout << "_nbIndices : " << _mesh->getNbIndices() << std::endl;
+	//std::cout << "shader : " << *_shader << std::endl;
+	//std::cout << "_nbIndices : " << _mesh->getNbIndices() << std::endl;
 
-	glUseProgram(*_shader);
+	glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, *_texture);
+    glUseProgram(*_shader);
+    glUniform1i(glGetUniformLocation(*_shader, "textureBalai"), 0);
+
+	
 
  	glm::mat4 projection = glm::frustum(-1., 1., -1., 1., 0.1, 100.); //  glm::mat4();
+
  	
  	GLuint etq = glGetUniformLocation(*_shader, "proj");
  	glUniformMatrix4fv(etq, 1, false, glm::value_ptr(projection));

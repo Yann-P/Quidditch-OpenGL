@@ -21,11 +21,12 @@ void createVBO(float* attributes,int nbVertices,int nbComponents, GLuint & vbo);
 void createIBO(unsigned int* indices,int nbIndices,  GLuint & ibo);
 void createVAO(GLuint & shaderProgram, GLuint & ibo, GLuint & vbo, GLuint & vao);
 GLuint createShaderProgram(GLchar* vSource, const GLint vLength, GLchar* fSource, const GLint fLength);
-bool loadPngImage(const char *, int &, int &, bool &, GLubyte **);
+char * read_tga(const char *filename, int& width, int& height, int& depth);
 
 }
 
 void initGLFW();
 void initGLEW();
+short le_short(unsigned char *bytes);
 
 #endif // OPENGLAPI_H
