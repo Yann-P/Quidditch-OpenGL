@@ -106,8 +106,7 @@ public:
     }
     // Uses the current shader
     void use() { glUseProgram(_program); }
-    operator GLuint() { return _program; };
-
+    operator GLuint() { return _program; }
 private:
 
     GLuint _program;

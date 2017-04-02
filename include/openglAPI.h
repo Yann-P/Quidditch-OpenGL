@@ -6,7 +6,10 @@
 #include <fstream>
 #include <iostream>
 #include <GLFW/glfw3.h>
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <png.h>
+#include <iostream>
 
 namespace OGL
 {
@@ -18,6 +21,7 @@ void createVBO(float* attributes,int nbVertices,int nbComponents, GLuint & vbo);
 void createIBO(unsigned int* indices,int nbIndices,  GLuint & ibo);
 void createVAO(GLuint & shaderProgram, GLuint & ibo, GLuint & vbo, GLuint & vao);
 GLuint createShaderProgram(GLchar* vSource, const GLint vLength, GLchar* fSource, const GLint fLength);
+bool loadPngImage(const char *, int &, int &, bool &, GLubyte **);
 
 }
 

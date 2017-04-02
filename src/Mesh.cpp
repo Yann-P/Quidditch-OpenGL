@@ -58,3 +58,4 @@ const std::vector<glm::vec3> & Mesh::getPositions() const { return _positions; }
 const std::vector<glm::vec3> & Mesh::getNormals() const { return _normals; }
 const std::vector<glm::vec2> & Mesh::getUvs() const { return _uvs; }
 const std::vector<int> & Mesh::getIndices() const { return _indices; }
+const int Mesh::getNbIndices() const { return _indices.size(); }

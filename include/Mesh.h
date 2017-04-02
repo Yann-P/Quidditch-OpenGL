@@ -22,6 +22,8 @@ class Mesh
         const std::vector<glm::vec3> & getNormals() const;
         const std::vector<glm::vec2> & getUvs() const;
         const std::vector<int> & getIndices() const;
+        const int getNbIndices() const;
+        Mesh(const Mesh&) = delete;
 
 
 

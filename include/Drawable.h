@@ -3,19 +3,19 @@
 
 #include <Shader.h>
 #include <Mesh.h>
+#include <iostream>
 
 class Drawable
 {
     public:
-        Drawable(Shader, Mesh);
+        Drawable(Shader * const, Mesh * const);
         virtual void draw(long int) = 0;
     protected:
-        Shader & _shader;
-        Mesh & _mesh;
+        Shader * const _shader;
+        Mesh * const _mesh;
         GLuint _ibo;
         GLuint _vbo;
         GLuint _vao;
-        int _nbIndices;
     private:
 };
 
