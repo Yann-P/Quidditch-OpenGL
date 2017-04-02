@@ -8,7 +8,7 @@
 #include "GoldenSnitch.h"
 #include <glm/glm.hpp>
 
-GoldenSnitch::GoldenSnitch() {
+GoldenSnitch::GoldenSnitch() { // TODO FAIRE HÉRITER DE DRAWABLE
 	glm::vec3 _position = {0,0,0};
 	float _speed = 1;
 	glm::vec3 _rotation = {0,0,0};
