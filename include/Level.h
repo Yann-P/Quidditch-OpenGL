@@ -16,14 +16,10 @@ class Level
 {
     public:
         /** @brief  Creates an empty level
-          * @param  
-          * @return 
           */
-        Level();
+        explicit Level();
 
         /** @brief  Called at each frame. Clears the screen, updates and draws each elements, swaps the buffer.
-          * @param  
-          * @return 
           */
         void frame() const;
 
@@ -33,6 +29,11 @@ class Level
           */
         void add(Drawable * const);
 
+
+        /** @brief  Reçoit les évènements clavier
+          */
+        void key_callback(GLFWwindow*, int, int, int, int);
+
         /** @brief  Forbids copy
           */
         Level(const Level&) = delete;
@@ -40,9 +41,11 @@ class Level
     protected:
     private:
     	long int elapsed() const;
-
     	long int _startTime;
         std::vector<Drawable *> _drawables;
+        Camera _camera;
+
+
 
 
 };

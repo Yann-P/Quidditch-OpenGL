@@ -24,13 +24,13 @@ class Mesh
         /** @brief  Creates a mesh from a path to a .blend or .obj.
           * @param  The path to the resource
           */
-        Mesh(const std::string &);
+        explicit Mesh(const std::string &);
 
         const std::vector<glm::vec3> & getPositions() const;
         const std::vector<glm::vec3> & getNormals() const;
         const std::vector<glm::vec2> & getUvs() const;
         const std::vector<int> & getIndices() const;
-        const int getNbIndices() const;
+        int getNbIndices() const;
 
         /** @brief  Forbids copy
           */

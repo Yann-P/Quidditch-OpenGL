@@ -4,29 +4,34 @@
 #include <Level.h>
 #include <Broom.h>
 
-#include <../include/fleche.h>
-#include <../include/pave.h>
+Level level; // aie ! mais j'ai besoin de la variable dans le keycallback. à changer éventuellement
 
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+    level.key_callback(window, key, scancode, action, mode);
+}
 
 int main(void)
 {
 
- 	OGL::init();
+	OGL::init();
 
- 	Level level;
- 	Broom broom(glm::vec3(0, 0, -5));
-
- 	level.add(&broom);
-
+	for(int i = 0; i < 10; i++) {
+		Broom * broom = new Broom(glm::vec3(i - 5, i - 5, -i));
+		level.add(broom);
+	}
 
 	GLFWwindow* window = glfwGetCurrentContext();
+	glfwSetKeyCallback(window, key_callback);
 
- 	while (!glfwWindowShouldClose(window)) {
- 		level.frame();
+	while (!glfwWindowShouldClose(window)) {
+		level.frame();
 	}
 
 	glfwTerminate();
 
-  	return 0;
+	return 0;
 }
+
+

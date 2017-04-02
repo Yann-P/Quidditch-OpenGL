@@ -20,7 +20,7 @@ public:
 	/** @brief  Build a texture object from a path to the tga file
 	  * @param A string path to the file
 	  */
-	Texture(const std::string &);
+	explicit Texture(const std::string &);
 
 	/** @brief  Implicit output conversion to a GLuint texture tag
 	  */

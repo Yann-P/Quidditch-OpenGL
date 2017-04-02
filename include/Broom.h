@@ -6,6 +6,7 @@
 #define __BROOM_H__
 
 #include <Drawable.h>
+#include <Camera.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -17,10 +18,10 @@
 
 class Broom: public Drawable {
 public:
-	Broom();
+	explicit Broom(glm::vec3);
 	void update(long int) override;
 	void draw(long int) override;
-    Broom(const Broom&) = delete;
+	Broom(const Broom&) = delete;
 
 
 private:
