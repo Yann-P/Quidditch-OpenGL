@@ -11,7 +11,7 @@
 #include "character.h"
 #include <glm/glm.hpp>
 
-Character::Character(){
+Character::Character(){ // TODO FAIRE HÉRITER DE DRAWABLE
   _position = glm::vec3(0,0,0);
   _speed = glm::vec3(0,0,0);
   _maxSpeed = 30;
