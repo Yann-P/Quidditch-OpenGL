@@ -14,10 +14,12 @@ Broom::Broom() : Drawable(
 
 }
 
-void Broom::draw(long int t) {
+void Broom::update(long int t) {
 
-	//std::cout << "shader : " << *_shader << std::endl;
-	//std::cout << "_nbIndices : " << _mesh->getNbIndices() << std::endl;
+}
+
+
+void Broom::draw(long int t) {
 
 	glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, *_texture);

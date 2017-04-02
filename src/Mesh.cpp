@@ -29,10 +29,6 @@ Mesh::Mesh(const std::string & file) {
         const aiVector3D* pos = &(model->mVertices[i]);
         const aiVector3D* nor = &(model->mNormals[i]);
         const aiVector3D* tex = model->HasTextureCoords(0) ? &(model->mTextureCoords[0][i]) : &aiZeroVector;
-
-        // std::cout << "pos x=" << pos->x << ", y=" << pos->y << ", z =" << pos->z << std::endl;
-        // std::cout << "tex x=" << tex->x << ", y=" << tex->y << std::endl;
-        // std::cout << "nor x=" << nor->x << ", y=" << nor->y << ", z =" << nor->z << std::endl;
         
         _positions.push_back(glm::vec3(pos->x, pos->y, pos->z));
         _normals.push_back(glm::vec3(nor->x, nor->y, nor->z));

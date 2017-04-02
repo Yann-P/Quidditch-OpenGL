@@ -1,3 +1,9 @@
+/*
+ *  @author Pierrick Bouvier
+ *  @author Pierre Gabon
+ *  @author Yann Pellegrini
+ */
+
 #ifndef LEVEL_H
 #define LEVEL_H
 #include <Drawable.h>
@@ -9,15 +15,31 @@
 class Level
 {
     public:
+        /** @brief  Creates an empty level
+          * @param  
+          * @return 
+          */
         Level();
-        void drawLevel() const;
-        void addDrawable(Drawable * const);
+
+        /** @brief  Called at each frame. Clears the screen, updates and draws each elements, swaps the buffer.
+          * @param  
+          * @return 
+          */
+        void frame() const;
+
+        /** @brief  Adds a drawable object to be updated and drawn at every frame.
+          * @param  The pointer to the Drawable object
+          * @return 
+          */
+        void add(Drawable * const);
+
+        /** @brief  Forbids copy
+          */
         Level(const Level&) = delete;
 
     protected:
     private:
-    	void drawAllDrawables() const;
-    	long int getTime() const;
+    	long int elapsed() const;
 
     	long int _startTime;
         std::vector<Drawable *> _drawables;

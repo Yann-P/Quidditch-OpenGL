@@ -14,15 +14,26 @@
 #include <assimp/postprocess.h>
 #include <glm/glm.hpp>
 
+/** 
+  * @brief A mesh is a simple model that stores the vertices, normals, uvs and indices.
+  */
 class Mesh
 {
     public:
+
+        /** @brief  Creates a mesh from a path to a .blend or .obj.
+          * @param  The path to the resource
+          */
         Mesh(const std::string &);
+
         const std::vector<glm::vec3> & getPositions() const;
         const std::vector<glm::vec3> & getNormals() const;
         const std::vector<glm::vec2> & getUvs() const;
         const std::vector<int> & getIndices() const;
         const int getNbIndices() const;
+
+        /** @brief  Forbids copy
+          */
         Mesh(const Mesh&) = delete;
 
 

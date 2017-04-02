@@ -15,16 +15,15 @@ int main(void)
  	OGL::init();
 
  	Level level;
- 	
  	Broom broom;
 
- 	level.addDrawable(&broom);
+ 	level.add(&broom);
 
 
 	GLFWwindow* window = glfwGetCurrentContext();
 
  	while (!glfwWindowShouldClose(window)) {
- 		level.drawLevel();
+ 		level.frame();
 	}
 
 	glfwTerminate();

@@ -8,9 +8,12 @@
 
 Drawable::Drawable(Shader * s, Mesh * m, Texture * t): _shader(s), _mesh(m), _texture(t)
 {
+	makeVAO();
+}
 
-	//std::cout << "drawable: mesh=" << _mesh-> << std::endl;
-	std::cout << "drawable: shader=" << *_shader << std::endl;
+
+void Drawable::makeVAO() {
+
 
 	GLuint vbo_positions, vbo_uvs, vbo_normals, ibo, vao;
 
@@ -31,7 +34,7 @@ Drawable::Drawable(Shader * s, Mesh * m, Texture * t): _shader(s), _mesh(m), _te
  	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
  	glBindBuffer(GL_ARRAY_BUFFER, vbo_uvs);
- 	glBufferData((GLenum)GL_ARRAY_BUFFER, _mesh->getUvs().size() * sizeof(float) * 2, _mesh->getUvs().data(), (GLenum)GL_STATIC_DRAW);
+ 	glBufferData(GL_ARRAY_BUFFER, _mesh->getUvs().size() * sizeof(float) * 2, _mesh->getUvs().data(), GL_STATIC_DRAW);
  	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
@@ -52,8 +55,6 @@ Drawable::Drawable(Shader * s, Mesh * m, Texture * t): _shader(s), _mesh(m), _te
     glEnableVertexAttribArray(uvsIndex);
  	glVertexAttribPointer(uvsIndex, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
-
- 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
  	// IBO
  	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);

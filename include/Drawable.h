@@ -17,13 +17,17 @@ class Drawable
     public:
         Drawable(Shader * const, Mesh * const, Texture * const);
         virtual void draw(long int) = 0;
+        virtual void update(long int) = 0;
     protected:
         Shader * const _shader;
         Mesh * const _mesh;
         Texture * const _texture;
         GLuint _ibo;
         GLuint _vao;
+        glm::vec3 _position;
+
     private:
+        void makeVAO();
 };
 
 #endif

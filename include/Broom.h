@@ -12,9 +12,13 @@
 #include <glm/gtx/norm.hpp>
 #include <iostream>
 
+/** @brief  The broom in the game. Implements Drawable.
+  */
+
 class Broom: public Drawable {
 public:
 	Broom();
+	void update(long int) override;
 	void draw(long int) override;
     Broom(const Broom&) = delete;
 
