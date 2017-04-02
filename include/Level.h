@@ -1,6 +1,5 @@
 /*
  *  @author Pierrick Bouvier
- *  @author Pierre Gabon
  *  @author Yann Pellegrini
  */
 
@@ -38,12 +37,18 @@ class Level
           */
         Level(const Level&) = delete;
 
+
+        //bool collisionWithObstacle() const; // À DÉBUGGER!
+
     protected:
     private:
     	long int elapsed() const;
     	long int _startTime;
         std::vector<Drawable *> _drawables;
         Camera _camera;
+        bool _win = false;
+        // Character * _character;
+        // GoldenSnitch * _snitch;
 
 
 

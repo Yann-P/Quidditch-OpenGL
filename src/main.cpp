@@ -17,9 +17,11 @@ int main(void)
 
 	OGL::init();
 
-	for(int i = 0; i < 10; i++) {
-		Broom * broom = new Broom(glm::vec3(i - 5, i - 5, -i));
-		level.add(broom);
+	Broom * brooms[6];
+
+	for(int i = 0; i < 6; i++) {
+		brooms[i] = new Broom(glm::vec3(i - 3, i - 3, -i*10));
+		level.add(brooms[i]);
 	}
 
 	GLFWwindow* window = glfwGetCurrentContext();
@@ -28,6 +30,9 @@ int main(void)
 	while (!glfwWindowShouldClose(window)) {
 		level.frame();
 	}
+
+
+	delete[] brooms;
 
 	glfwTerminate();
 

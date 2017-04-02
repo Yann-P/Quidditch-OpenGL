@@ -47,6 +47,23 @@ long int Level::elapsed() const {
 }
 
 
+// À DÉBUGGER!
+
+// bool Level::collisionWithObstacle() const {
+
+//   vector<Obstacle>::iterator itBegin= _obstacles.begin();
+//   vector<Obstacle>::iterator itEnd= _obstacles.end();
+
+//   while(itBegin!=itEnd){
+//     if(!((*itBegin).detectCollision(_seeker->getPosition()) ) )
+//       {
+// 	return true;
+//       }
+//     ++itBegin;
+//   }
+// }
+
+
 void Level::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
     if(action == GLFW_PRESS) {			
