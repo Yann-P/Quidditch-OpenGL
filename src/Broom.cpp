@@ -6,12 +6,14 @@
 
 #include <Broom.h>
 
-Broom::Broom() : Drawable(
+Broom::Broom(glm::vec3 position) : Drawable(
 	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
 	new Mesh("../blend/balai.blend"),
 	new Texture("../texture/texture_peut_etre.tga")
-){
-
+),
+	
+{
+	_position = position;
 }
 
 void Broom::update(long int t) {

@@ -47,8 +47,9 @@ find_package(PNG REQUIRED)
 include_directories(${PNG_INCLUDE_DIR})
 
 
-include_directories(./include)
-file (GLOB_RECURSE source_files src/* include/*)
+include_directories(./include ./lib)
+file (GLOB_RECURSE source_files src/* include/* lib/*)
+
 add_executable(Quidditch ${source_files})
 
 target_link_libraries(Quidditch  ${GL_LIBRARIES} ${APPLE_FRAMEWORKS} ${GLFW3_STATIC_LIBRARIES} ${ASSIMP_LIBRARIES} ${PNG_LIBRARY})

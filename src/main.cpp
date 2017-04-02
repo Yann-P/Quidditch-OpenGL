@@ -15,7 +15,7 @@ int main(void)
  	OGL::init();
 
  	Level level;
- 	Broom broom;
+ 	Broom broom(glm::vec3(0, 0, -5));
 
  	level.add(&broom);
 
