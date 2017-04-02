@@ -1,11 +1,11 @@
+/**
+  *  @author Yann Pellegrini
+  *
+  */
+
+
+
 #include "Mesh.h"
-
-
-Mesh::Mesh(const std::vector<glm::vec3> positions, const std::vector<int> indices)
-{
-    _positions = positions;
-    _indices = indices;
-}
 
 
 Mesh::Mesh(const std::string & file) {
@@ -17,8 +17,7 @@ Mesh::Mesh(const std::string & file) {
                                              aiProcess_GenSmoothNormals | 
                                              aiProcess_FlipUVs);
 
-    if(!scene)
-    {
+    if(!scene) {
         std::cerr << "Mesh::Mesh(const string &) : Mesh load failed! " << std::endl;
     }
 
@@ -37,7 +36,7 @@ Mesh::Mesh(const std::string & file) {
         
         _positions.push_back(glm::vec3(pos->x, pos->y, pos->z));
         _normals.push_back(glm::vec3(nor->x, nor->y, nor->z));
-        _uvs.push_back(glm::vec2(nor->x, nor->y));
+        _uvs.push_back(glm::vec2(tex->x, tex->y));
 
     }
 

@@ -1,3 +1,9 @@
+/**
+  *  @author Yann Pellegrini
+  *
+  */
+
+
 #include <Broom.h>
 
 Broom::Broom() : Drawable(
@@ -20,7 +26,7 @@ void Broom::draw(long int t) {
 
 	
 
- 	glm::mat4 projection = glm::frustum(-1., 1., -1., 1., 0.1, 100.); //  glm::mat4();
+ 	glm::mat4 projection = glm::frustum(-1., 1., -1., 1., 0.1, 100.);
 
  	
  	GLuint etq = glGetUniformLocation(*_shader, "proj");

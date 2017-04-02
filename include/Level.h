@@ -12,6 +12,7 @@ class Level
         Level();
         void drawLevel() const;
         void addDrawable(Drawable * const);
+        Level(const Level&) = delete;
 
     protected:
     private:

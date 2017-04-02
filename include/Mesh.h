@@ -1,13 +1,14 @@
+/**
+  *  @author Yann Pellegrini
+  *
+  */
+
+
 #ifndef MESH_H
 #define MESH_H
 
-// #include <cstring>
 #include <iostream>
 #include <vector>
-// #include <GL/glew.h>
-// #include <GL/gl.h>
-// #include <fstream>
-// #include <GLFW/glfw3.h>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -16,7 +17,6 @@
 class Mesh
 {
     public:
-        Mesh(const std::vector<glm::vec3>, const std::vector<int>);
         Mesh(const std::string &);
         const std::vector<glm::vec3> & getPositions() const;
         const std::vector<glm::vec3> & getNormals() const;

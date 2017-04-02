@@ -1,3 +1,9 @@
+/**
+  *  @author Yann Pellegrini
+  *
+  */
+
+
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
@@ -16,7 +22,6 @@ class Drawable
         Mesh * const _mesh;
         Texture * const _texture;
         GLuint _ibo;
-        GLuint _vbo;
         GLuint _vao;
     private:
 };
