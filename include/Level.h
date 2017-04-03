@@ -6,6 +6,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include <Drawable.h>
+#include <Input.h>
 #include <sys/time.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -46,6 +47,7 @@ class Level
     	long int _startTime;
         std::vector<Drawable *> _drawables;
         Camera _camera;
+        Input _input;
         bool _win = false;
         // Character * _character;
         // GoldenSnitch * _snitch;
