@@ -22,7 +22,7 @@ int main(void)
 
 	Broom * broom = new Broom(glm::vec3(2, 2, -50));
 	GoldenSnitch * snitch = new GoldenSnitch(glm::vec3(-3, -3, -10));
-	Character * character = new Character(glm::vec3(-2, 10, -10));
+	Character * character = new Character(glm::vec3(-2, 5, -10));
 
 	level.add(broom);
 	level.add(snitch);

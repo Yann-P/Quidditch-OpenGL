@@ -25,7 +25,7 @@ class Level
 
         /** @brief  Adds a drawable object to be updated and drawn at every frame.
           * @param  The pointer to the Drawable object
-          * @return 
+          * @return
           */
         void add(Drawable * const);
 

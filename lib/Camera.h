@@ -36,7 +36,7 @@ class Camera
 {
 public:
     // Camera Attributes
-    glm::vec3 Position;
+
     glm::vec3 Front;
     glm::vec3 Up;
     glm::vec3 Right;
@@ -47,7 +47,7 @@ public:
     // Camera options
     GLfloat MovementSpeed;
     GLfloat MouseSensitivity;
-    
+
 
     // Constructor with vectors
     Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
@@ -123,17 +123,26 @@ public:
             this->Zoom = 45.0f;
     }
 
-    GLfloat getZoom() {
+    GLfloat getZoom() const {
         return Zoom;
     }
 
     void setZoom(GLfloat zoom) {
-        Zoom = zoom;
+        Zoom = zoom < 0 ? 0 : zoom;
     }
+
+    const glm::vec3 getPosition() const {
+        return Position;
+    }
+
+    void setPosition(glm::vec3 position) {
+        Position = position;
+    }
+
 
 private:
 
-
+    glm::vec3 Position;
     GLfloat Zoom;
 
     // Calculates the front vector from the Camera's (updated) Eular Angles

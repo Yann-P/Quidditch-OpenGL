@@ -13,14 +13,14 @@ Level::Level() {
 
 void Level::frame() {
 	long int t = elapsed() - _startTime;
-	
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glEnable(GL_DEPTH_TEST);
     glClear(GL_DEPTH_BUFFER_BIT);
     glDepthFunc(GL_LESS);
-	
+
 	for(Drawable * const obj: _drawables) {
 		obj->update(t);
 		obj->draw(t);
