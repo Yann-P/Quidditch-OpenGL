@@ -13,7 +13,7 @@
 
 Character::Character(glm::vec3 position) : Drawable(
   new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
-  new Mesh("../../character.blend"),
+  new Mesh("../blend/character_test.blend"),
   new Texture("../texture/texture_peut_etre.tga")
 ){
   _position = position;
