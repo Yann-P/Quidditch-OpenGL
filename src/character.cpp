@@ -21,13 +21,27 @@ Character::Character(glm::vec3 position) : Drawable(
 ){
   _position = position;
   //_speed = glm::vec3(1,1,1);
-  _speed = glm::vec3(0,0,0);
+  _speed = 0;
   _maxSpeed = 2;
-  _accel = glm::vec3(0.1,0.1,0.1);
+  _accel = 1;
+  _n = 100;
+  _alpha = (2 * 3.14) / (float) _n;
+  _beta = (2 * 3.14) / (float) _n;
+  _teta = 3.14 / (float) 2;
+  _phi = 0;
+  _psy = _teta;
+  _epsilon = _phi;
+  _dir = glm::vec3(cos(_phi)*cos(_teta),sin(_phi),-cos(_phi)*sin(_teta)); //direction dans la quelle regarde le personnage vitesse selon cette axe
+
+  cout << "x=" << _dir.x << " y=" << _dir.y << " z=" << _dir.z << endl;
 }
 
-glm::vec3 Character::getSpeed(){
+float Character::getSpeed(){
   return _speed;
+}
+
+void Character::updateDir(){
+  _dir = glm::vec3(cos(_epsilon)*cos(_psy),sin(_epsilon),-cos(_epsilon)*sin(_psy));
 }
 
 void Character::draw(long int t){
@@ -72,13 +86,25 @@ void Character::update(long int t){
 
   if(_input->isDown(GLFW_KEY_A)){  //q
     //cout << "gauche ";
-    _speed.x -= _accel.x;
+    _psy += _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
-    _speed.x += _accel.x;
+    _psy -= _alpha;
   }
+
+  if(_input->isDown(GLFW_KEY_W)){  //z
+    //cout << "orientation basse";
+    _epsilon -= _beta;
+  }
+
+  if(_input->isDown(GLFW_KEY_S)){
+    //cout << "orientation haute";
+    _epsilon += _beta;
+  }
+
+
    /*
   if(_input->isDown(GLFW_KEY_Z)) {  //w
     //cout << "bas ";
@@ -90,44 +116,35 @@ void Character::update(long int t){
     _position.y += _speed.y;
   }*/
 
-  if(_input->isDown(GLFW_KEY_W)){  //z
-    //cout << "avant ";
-    _speed.y -= _accel.y;
-  }
-
-  if(_input->isDown(GLFW_KEY_S)){
-    //cout << "arriere ";
-    _speed.y += _accel.y;
-  }
-
   if(_input->isDown(GLFW_KEY_LEFT_SHIFT)){
     //cout<< "brake"
-    _speed /= _accel;
+    if(_speed<=0){
+      _speed = 0;
+    } else {
+      _speed -= _accel;
+    }
   }
 
   if(_input->isDown(GLFW_KEY_SPACE)){
     //cout<< "accel"
     if(speedLimit()){
-      _speed *= _accel;
+      _speed += _accel;
     }
+  } else {
+    _speed *= 0.95;
   }
 
 
   /* mouvement continue*/
-  _position += _speed;
+  updateDir();
+  _position += _speed*_dir;
 
-    _camera->setPosition(_position + glm::vec3(0,0,10.0));
+  _camera->setPosition(_position + glm::vec3(0,0,10.0));
 }
 
 void Character::accel(){
-  int acc = 0;
-  acc += _accel.x;
-  acc += _accel.y;
-  acc += _accel.z;
 }
 
 bool Character::speedLimit(){
-  float acc = 0.0;
-  //acc += _speed*_speed;
-  return (acc < _maxSpeed);
+  return (_speed < _maxSpeed);
 }

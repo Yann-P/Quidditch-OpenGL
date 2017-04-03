@@ -27,19 +27,27 @@
 class Character : public Drawable {
  public:
   explicit Character(glm::vec3);
-  glm::vec3 getSpeed();
+  float getSpeed();
   void draw(long int) override;
   void update(long int)override;
   void accel();
   bool speedLimit();
+  void updateDir();
   Character(const Character&) = delete;
 
  private:
   int _maxSpeed;
-  glm::vec3 _accel;
-  glm::vec3 _speed;
+  float _accel;
+  float _speed;
   bool keys[1024];
-
+  glm::vec3 _dir;
+  int _n;       // donne l'angle de rotation de alpha et beta
+  float _alpha; // mouvement de dir selon (Ox,Oz)
+  float _beta; // mouvement de dir selon (Ox,Oy)
+  float _teta; // axe origine de dir selon (Ox,Oz) (peut etre optionnel depend de si on veut le garder pour revenir a une position initiale)
+  float _phi; // axe origine de dir selon (Oy,Oz) (peut etre optionnel depend de si on veut le garder pour revenir a une position initiale)
+  float _psy; // ecart actuel d'angle avec _teta psy = teta + k*alpha
+  float _epsilon; // ecart actuel d'angle avec _phi epsilon = phi + p*beta
 
 };
 
