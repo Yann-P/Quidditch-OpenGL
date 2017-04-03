@@ -10,6 +10,9 @@
 
 #include "character.h"
 #include <glm/glm.hpp>
+#include <iostream>
+
+using namespace std;
 
 Character::Character(glm::vec3 position) : Drawable(
   new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
@@ -17,9 +20,9 @@ Character::Character(glm::vec3 position) : Drawable(
   new Texture("../texture/texture_peut_etre.tga")
 ){
   _position = position;
-  _speed = glm::vec3(0,0,0);
-  _maxSpeed = 30;
-  _accel = glm::vec3(0,0,0);
+  _speed = glm::vec3(1,1,1);
+  _maxSpeed = 5;
+  _accel = glm::vec3(1.1,1.1,1.1);
 }
 
 glm::vec3 Character::getSpeed(){
@@ -60,22 +63,66 @@ void Character::draw(long int t){
 }
 
 void Character::update(long int t){
-  /*if(keys[GLFW_KEY_LEFT]){
-    cout << "gauche ";
+  if(_input->isDown(GLFW_KEY_A)){
+    //cout << "gauche ";
+    _position.x -= _speed.x;
   }
         
-  if(keys[GLFW_KEY_RIGHT]){
-    cout << "droite ";
+  if(_input->isDown(GLFW_KEY_D)){
+    //cout << "droite ";
+    _position.x += _speed.x;
   }
         
-  if(keys[GLFW_KEY_DOWN]) {
-    cout << "bas ";
+  if(_input->isDown(GLFW_KEY_Z)) {
+    //cout << "bas ";
+    _position.y -= _speed.y;
   }
         
-  if(keys[GLFW_KEY_UP]){
-    cout << "haut ";
-  }*/
+  if(_input->isDown(GLFW_KEY_X)){
+    //cout << "haut ";
+    _position.y += _speed.y;
+  }
+
+  if(_input->isDown(GLFW_KEY_W)){
+    //cout << "avant ";
+    _position.z += _speed.z;
+  }
+
+  if(_input->isDown(GLFW_KEY_S)){
+    //cout << "arriere ";
+    _position.z -= _speed.z;
+  }
+
+  if(_input->isDown(GLFW_KEY_LEFT_SHIFT)){
+    //cout<< "brake"
+    _speed /= _accel;
+  }
+
+  if(_input->isDown(GLFW_KEY_SPACE)){
+    //cout<< "accel"
+    if(speedLimit()){
+      _speed *= _accel;
+    }
+  }
+
+
+
+
+
+
 }
 
 void Character::accel(){
+  int acc = 0;
+  acc += _accel.x;
+  acc += _accel.y;
+  acc += _accel.z;
+}
+
+bool Character::speedLimit(){
+  float acc = 0.0;
+  acc += _speed.x;
+  acc += _speed.y;
+  acc += _speed.z;
+  return (acc < _maxSpeed);
 }

@@ -20,17 +20,20 @@ int main(void)
 
 	Broom * brooms[6];
 
-    Character * seeker[6];
+    //Character * seeker[6];
 
 	for(int i = 0; i < 6; i++) {
 		brooms[i] = new Broom(glm::vec3(i - 3, i - 3, -i*10));
 		level.add(brooms[i]);
 
-        /*test character*/
-        seeker[i] = new Character(glm::vec3(i - 3, i - 3, -i*10));
-        level.add(seeker[i]);
+        //test character
+        //seeker[i] = new Character(glm::vec3(i - 3, i - 3, -i*10));
+        //level.add(seeker[i]);
 	}
 
+    /*test character + move*/
+    Character * seeker = new Character(glm::vec3(0,0,0)) ;
+    level.add(seeker);
     
 
 
@@ -43,6 +46,7 @@ int main(void)
 
 
 	delete[] brooms;
+    delete seeker;
 
 	glfwTerminate();
 
