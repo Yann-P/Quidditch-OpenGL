@@ -9,31 +9,28 @@
 #define GOLDENSNITCH_H
 
 
-
 #define SNITCH_MAX_SPEED 10
 
-#include <glm/glm.hpp>
+#include <Drawable.h>
+#include <Camera.h>
 
-class GoldenSnitch {
-private:
-	glm::vec3 _position;
-
-	glm::vec3 _forward;
-	glm::vec3 _up;
-	glm::vec3 _right;
-
-	float _speed;
-	float _scale;
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/norm.hpp>
+#include <iostream>
+#include <cstdlib>
+#include <stack>
 
 
+class GoldenSnitch: public Drawable {
 public:
-	GoldenSnitch();
-	~GoldenSnitch();
-	void draw();
-	void update(float dt);
+	explicit GoldenSnitch(glm::vec3);
+	void update(long int) override;
+	void draw(long int) override;
+	GoldenSnitch(const GoldenSnitch&) = delete;
 
-	glm::vec3 getPosition();
-	float getSpeed();
+private:
+	std::stack<int> _path;
 
 };
 

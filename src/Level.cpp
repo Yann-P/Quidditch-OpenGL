@@ -11,7 +11,7 @@ Level::Level() {
 }
 
 
-void Level::frame() const {
+void Level::frame() {
 	long int t = elapsed() - _startTime;
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -24,6 +24,12 @@ void Level::frame() const {
 	for(Drawable * const obj: _drawables) {
 		obj->update(t);
 		obj->draw(t);
+	}
+
+	if(_input.isDown(GLFW_KEY_KP_ADD)) {
+		_camera.setZoom(_camera.getZoom() + .1);
+	} else if(_input.isDown(GLFW_KEY_KP_SUBTRACT)) {
+		_camera.setZoom(_camera.getZoom() - .1);
 	}
 
 	glfwPollEvents();

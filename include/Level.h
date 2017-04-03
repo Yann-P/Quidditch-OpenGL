@@ -21,7 +21,7 @@ class Level
 
         /** @brief  Called at each frame. Clears the screen, updates and draws each elements, swaps the buffer.
           */
-        void frame() const;
+        void frame();
 
         /** @brief  Adds a drawable object to be updated and drawn at every frame.
           * @param  The pointer to the Drawable object

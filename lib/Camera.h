@@ -127,6 +127,10 @@ public:
         return Zoom;
     }
 
+    void setZoom(GLfloat zoom) {
+        Zoom = zoom;
+    }
+
 private:
 
 

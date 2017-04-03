@@ -4,6 +4,7 @@
 #include <Level.h>
 #include <Broom.h>
 #include <character.h>
+#include <GoldenSnitch.h>
 
 Level level; // aie ! mais j'ai besoin de la variable dans le keycallback. à changer éventuellement
 
@@ -18,20 +19,13 @@ int main(void)
 
 	OGL::init();
 
-	Broom * brooms[6];
+	Broom * broom = new Broom(glm::vec3(0, 0, 10));
+	GoldenSnitch * snitch = new GoldenSnitch(glm::vec3(-3, -3, 0));
+	Character * character = new Character(glm::vec3(-2, -2, -10));
 
-    Character * seeker[6];
-
-	for(int i = 0; i < 6; i++) {
-		brooms[i] = new Broom(glm::vec3(i - 3, i - 3, -i*10));
-		level.add(brooms[i]);
-
-        /*test character*/
-        seeker[i] = new Character(glm::vec3(i - 3, i - 3, -i*10));
-        level.add(seeker[i]);
-	}
-
-    
+	level.add(broom);
+	level.add(snitch);
+	level.add(character);
 
 
 	GLFWwindow* window = glfwGetCurrentContext();
@@ -41,8 +35,6 @@ int main(void)
 		level.frame();
 	}
 
-
-	delete[] brooms;
 
 	glfwTerminate();
 
