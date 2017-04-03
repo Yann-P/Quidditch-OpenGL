@@ -4,7 +4,7 @@ using namespace std;
 
 Level::Level() {
 	_startTime = elapsed();
-	_camera = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+	_camera = Camera(glm::vec3(0.0f, 0.0f, 9.0f));
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
