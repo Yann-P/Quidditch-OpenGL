@@ -9,7 +9,7 @@
 
 
 GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
-	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+	new Shader("../shaders/snitch.v.glsl", "../shaders/snitch.f.glsl"),
 	new Mesh("../../save/cube.blend"),
 	new Texture("../texture/texture_peut_etre.tga")
 ) {
@@ -19,17 +19,30 @@ GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
 
 
 void GoldenSnitch::update(long int t) {
-	int dir = rand()%6;
+
+	if (_path.size() == 0) {
+		int n = rand()%30 + 1;
+		int nextDir = rand()%6;
+
+		for (int i=0 ; i<n ; i++) {
+			_path.push(nextDir);
+		}
+	}
+
+	int dir = _path.top();
+	_path.pop();
 
 	switch (dir) {
 		// GO RIGHT
 		case 0:
 		_position.x += 0.1;
+		//_angle.x += glm::half_pi<float>();
 		break;
 
 		// GO LEFT
 		case 1:
 		_position.x -= 0.1;
+		//_angle.x -= glm::half_pi<float>();
 		break;
 
 		// GO UP
@@ -54,8 +67,6 @@ void GoldenSnitch::update(long int t) {
 		break;
 
 	}
-
-
 
 
 }

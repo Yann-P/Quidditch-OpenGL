@@ -19,6 +19,8 @@
 #include <glm/gtx/norm.hpp>
 #include <iostream>
 #include <cstdlib>
+#include <stack>
+
 
 class GoldenSnitch: public Drawable {
 public:
@@ -28,6 +30,7 @@ public:
 	GoldenSnitch(const GoldenSnitch&) = delete;
 
 private:
+	std::stack<int> _path;
 
 };
 
