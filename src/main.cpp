@@ -28,17 +28,14 @@ int main(void)
 	level.add(snitch);
 	level.add(character);
 
-    Obstacle * obstacle[3];
+    Obstacle * obstacles[3];
 
 
     for(int i = 0; i < 3; i++) {
-        obstacle[i] = new Obstacle(glm::vec3(i - 3, i - 3, -i*10));
-        obstacle[i]->setCharacter(broom);
-        level.add(obstacle[i]);
+        obstacles[i] = new Obstacle(glm::vec3(i - 3, i - 3, -i*10));
+        obstacles[i]->setCharacter(broom);
+        level.add(obstacles[i]);
 	}
-
-
-
 
 	GLFWwindow* window = glfwGetCurrentContext();
 	glfwSetKeyCallback(window, key_callback);
@@ -47,6 +44,12 @@ int main(void)
 		level.frame();
 	}
 
+	delete broom;
+	delete snitch;
+	delete character;
+	for(int i = 0; i < 3; i++) {
+		delete obstacles[i];
+	}
 
 	glfwTerminate();
 

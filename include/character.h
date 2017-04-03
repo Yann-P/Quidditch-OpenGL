@@ -31,6 +31,7 @@ class Character : public Drawable {
   void draw(long int) override;
   void update(long int)override;
   void accel();
+  bool speedLimit();
   Character(const Character&) = delete;
 
  private:
