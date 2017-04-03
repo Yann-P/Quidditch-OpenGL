@@ -6,69 +6,92 @@
  */
 
 #include "GoldenSnitch.h"
-#include <glm/glm.hpp>
-
-GoldenSnitch::GoldenSnitch() { // TODO FAIRE HÉRITER DE DRAWABLE
-	glm::vec3 _position = {0,0,0};
-	float _speed = 1;
-	glm::vec3 _rotation = {0,0,0};
-	float _scale =  1;
-}
 
 
-GoldenSnitch::~GoldenSnitch() {
+GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
+	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+	new Mesh("../../save/cube.blend"),
+	new Texture("../texture/texture_peut_etre.tga")
+) {
+	_position = position;
 
 }
 
 
-void GoldenSnitch::update(float dt) {
+void GoldenSnitch::update(long int t) {
+	int dir = rand()%6;
 
-	_speed *= 0.96; // Friction in space, suuuure...
+	switch (dir) {
+		// GO RIGHT
+		case 0:
+		_position.x += 0.1;
+		break;
 
-	/*
-	 * @TODO : pour ralentir ou acceler
-	 *
-	 * static const float acceleration = 70;
-	 *
-	 * if (...) {
-	 *	speed += dt * acceleration;
-	 * }
-	 *
-	 * if (...) {
-	 * 	speed -= dt * acceleration;
-	 * }
-	 */
+		// GO LEFT
+		case 1:
+		_position.x -= 0.1;
+		break;
 
-	int movement = rand() % 4;
+		// GO UP
+		case 2:
+		_position.y += 0.1;
+		break;
 
-//
-//	_forward = _forward * cosf(_rotationZ) + _right * sinf(_rotationZ);
-//	_right = _forward.cross(_up);
-//
-//	_right = _right * cosf(rotationY) + _up * sinf(_rotationY);
-//	_right.normalize();
-//	_up = _right.cross(_forward);
-//	_up.normalize();
-//
-//	_forward = _forward * cosf(rotationX) + _up * sinf(_rotationX);
-//	_forward.normalize();
-//	_up = _right.cross(_forward);
-//	_up.normalize();
-//
-//	_position += _forward * _speed;
+		// GO DOWN
+		case 3:
+		_position.y -= 0.1;
+		break;
+
+		// GO FORWARD
+		case 4:
+		_position.z += 0.1;
+		break;
+
+
+		// GO FORWARD
+		default:
+		_position.z -= 0.1;
+		break;
+
+	}
+
+
+
 
 }
 
 
-void GoldenSnitch::draw() {
-}
+
+void GoldenSnitch::draw(long int t) {
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, *_texture);
+	glUseProgram(*_shader);
+	glUniform1i(glGetUniformLocation(*_shader, "textureBalai"), 0);
+	
+
+	GLuint modelTag = glGetUniformLocation(*_shader, "model");
+	GLuint viewTag = glGetUniformLocation(*_shader, "view");
+	GLuint projectionTag = glGetUniformLocation(*_shader, "projection");
+
+	glm::mat4 view(_camera->getViewMatrix());
+	glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 1000.0f));
+
+	glm::mat4 model;
+	model = glm::translate(model, _position);
+	model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
+	model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
+	model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
+	glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
 
-glm::vec3 GoldenSnitch::getPosition() {
-	return _position;
-}
+	glUniformMatrix4fv(viewTag, 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(projectionTag, 1, GL_FALSE, glm::value_ptr(projection));
+	
 
+	glBindVertexArray(_vao);
+	glDrawElements(GL_TRIANGLES, _mesh->getNbIndices(), GL_UNSIGNED_INT, 0);
 
-float GoldenSnitch::getSpeed() {
-	return _speed;
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindVertexArray(0);
 }

@@ -3,6 +3,7 @@
 #include <Shader.h>
 #include <Level.h>
 #include <Broom.h>
+#include <GoldenSnitch.h>
 
 Level level; // aie ! mais j'ai besoin de la variable dans le keycallback. à changer éventuellement
 
@@ -24,6 +25,11 @@ int main(void)
 		level.add(brooms[i]);
 	}
 
+
+	GoldenSnitch *snitch = new GoldenSnitch(glm::vec3(-3,-3,0));
+	level.add(snitch);
+
+
 	GLFWwindow* window = glfwGetCurrentContext();
 	glfwSetKeyCallback(window, key_callback);
 
@@ -33,6 +39,7 @@ int main(void)
 
 
 	delete[] brooms;
+	delete snitch;
 
 	glfwTerminate();
 
