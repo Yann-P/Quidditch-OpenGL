@@ -7,6 +7,7 @@
 
 #include <Drawable.h>
 #include <Camera.h>
+#include <Broom.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
