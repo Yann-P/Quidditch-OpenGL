@@ -19,8 +19,8 @@ int main(void)
 
 	OGL::init();
 
-	Broom * broom = new Broom(glm::vec3(0, 0, 10));
-	GoldenSnitch * snitch = new GoldenSnitch(glm::vec3(-3, -3, 0));
+	Broom * broom = new Broom(glm::vec3(0, 0, -10));
+	GoldenSnitch * snitch = new GoldenSnitch(glm::vec3(-3, -3, -10));
 	Character * character = new Character(glm::vec3(-2, -2, -10));
 
 	level.add(broom);
