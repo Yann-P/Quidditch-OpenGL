@@ -15,6 +15,10 @@ void Drawable::setCamera(Camera * const camera) {
 	_camera = camera;
 }
 
+void Drawable::setInput(Input * const input) {
+	_input = input;
+}
+
 const glm::vec3 & Drawable::getPosition() const {
 	return _position;
 };

@@ -11,6 +11,7 @@
 #include <Mesh.h>
 #include <Texture.h>
 #include <Camera.h>
+#include <Input.h>
 #include <iostream>
 
 /**
@@ -24,6 +25,7 @@ class Drawable
 		virtual void draw(long int) = 0;
 		virtual void update(long int) = 0;
 		void setCamera(Camera * const);
+		void setInput(Input * const);
 
 		const glm::vec3 & getPosition() const;
 		const glm::vec3 & getAngle() const;
@@ -35,6 +37,7 @@ class Drawable
 		Mesh * const        _mesh;
 		Texture * const     _texture;
 		Camera *            _camera = nullptr;
+		Input * 			_input = nullptr;
 		GLuint              _ibo;
 		GLuint              _vao;
 		glm::vec3           _position;
