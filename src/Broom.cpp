@@ -16,12 +16,15 @@ Broom::Broom(glm::vec3 position) : Drawable(
 }
 
 void Broom::update(long int t) {
-	
-	
+
 	if(_input->isDown(GLFW_KEY_UP)) {
-		_angle.x+=0.01;
-		_angle.z+=0.001;
+		_angle.x+=0.001;
+	    _angle.z+=0.0001;
+	    _position.x-=0.02;
+	    _position.y-=0.02;
+	    _position.z+=0.2;
 	}
+
 }
 
 
