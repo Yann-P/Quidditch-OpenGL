@@ -63,17 +63,17 @@ void Character::draw(long int t){
 }
 
 void Character::update(long int t){
-  if(_input->isDown(GLFW_KEY_A)){
+  if(_input->isDown(GLFW_KEY_A)){  //q
     //cout << "gauche ";
-    _position.x -= _speed.x;
+    _speed.x -= _accel.x;
   }
         
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
-    _position.x += _speed.x;
+    _speed.x += _accel.x;
   }
-        
-  if(_input->isDown(GLFW_KEY_Z)) {
+   /*   
+  if(_input->isDown(GLFW_KEY_Z)) {  //w
     //cout << "bas ";
     _position.y -= _speed.y;
   }
@@ -81,16 +81,16 @@ void Character::update(long int t){
   if(_input->isDown(GLFW_KEY_X)){
     //cout << "haut ";
     _position.y += _speed.y;
-  }
+  }*/
 
-  if(_input->isDown(GLFW_KEY_W)){
+  if(_input->isDown(GLFW_KEY_W)){  //z
     //cout << "avant ";
-    _position.z += _speed.z;
+    _speed.y += _accel.y;
   }
 
   if(_input->isDown(GLFW_KEY_S)){
     //cout << "arriere ";
-    _position.z -= _speed.z;
+    _speed.y += _accel.y;
   }
 
   if(_input->isDown(GLFW_KEY_LEFT_SHIFT)){
@@ -106,8 +106,8 @@ void Character::update(long int t){
   }
 
 
-
-
+  /* mouvement continue*/
+  _position += _speed;
 
 
 }
@@ -121,8 +121,6 @@ void Character::accel(){
 
 bool Character::speedLimit(){
   float acc = 0.0;
-  acc += _speed.x;
-  acc += _speed.y;
-  acc += _speed.z;
+  //acc += _speed*_speed;
   return (acc < _maxSpeed);
 }
