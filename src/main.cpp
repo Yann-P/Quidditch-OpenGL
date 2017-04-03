@@ -3,6 +3,7 @@
 #include <Shader.h>
 #include <Level.h>
 #include <Broom.h>
+#include <character.h>
 
 Level level; // aie ! mais j'ai besoin de la variable dans le keycallback. à changer éventuellement
 
@@ -19,10 +20,19 @@ int main(void)
 
 	Broom * brooms[6];
 
+    Character * seeker[6];
+
 	for(int i = 0; i < 6; i++) {
 		brooms[i] = new Broom(glm::vec3(i - 3, i - 3, -i*10));
 		level.add(brooms[i]);
+
+        /*test character*/
+        seeker[i] = new Character(glm::vec3(i - 3, i - 3, -i*10));
+        level.add(seeker[i]);
 	}
+
+    
+
 
 	GLFWwindow* window = glfwGetCurrentContext();
 	glfwSetKeyCallback(window, key_callback);
