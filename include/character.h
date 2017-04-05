@@ -41,6 +41,8 @@ class Character : public Drawable {
   float _accel;
   float _speed;
   glm::vec3 _dir;
+  glm::vec3 _up;
+  glm::vec3 _right;
   int _n;       // donne l'angle de rotation de alpha et beta
   float _alpha; // mouvement de dir selon (Ox,Oz)
   float _beta; // mouvement de dir selon (Ox,Oy)
