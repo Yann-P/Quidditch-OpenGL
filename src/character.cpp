@@ -22,8 +22,8 @@ Character::Character(glm::vec3 position) : Drawable(
   _position = position;
   //_speed = glm::vec3(1,1,1);
   _speed = 0;
-  _maxSpeed = 2;
-  _accel = 1;
+  _maxSpeed = 0.5;
+  _accel = 0.05;
   _n = 100;
   _alpha = (2 * 3.14) / (float) _n;
   _beta = (2 * 3.14) / (float) _n;
@@ -31,8 +31,10 @@ Character::Character(glm::vec3 position) : Drawable(
   _phi = 0;
   _psy = _teta;
   _epsilon = _phi;
+  _angle.y += 3.14;
   _dir = glm::vec3(cos(_phi)*cos(_teta),sin(_phi),-cos(_phi)*sin(_teta)); //direction dans la quelle regarde le personnage vitesse selon cette axe
-
+  _up = glm::vec3(-sin(_phi)*cos(_teta),cos(_phi),sin(_phi)*sin(_teta));
+  _left = glm::vec3(-sin(_teta), 0 , cos(_teta) );
   cout << "x=" << _dir.x << " y=" << _dir.y << " z=" << _dir.z << endl;
 }
 
@@ -42,6 +44,8 @@ float Character::getSpeed(){
 
 void Character::updateDir(){
   _dir = glm::vec3(cos(_epsilon)*cos(_psy),sin(_epsilon),-cos(_epsilon)*sin(_psy));
+  _left = glm::vec3(-sin(_psy), 0 , cos(_psy) );
+  _up = glm::vec3(-sin(_epsilon)*cos(_psy),cos(_epsilon),sin(_epsilon)*sin(_psy));
 }
 
 void Character::draw(long int t){
@@ -60,9 +64,18 @@ void Character::draw(long int t){
 
   glm::mat4 model;
   model = glm::translate(model, _position);
-  model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
+  /*model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
   model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
-  model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
+  model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));*/
+  //glRotatef( 3.14 , 0,1,0 );
+  //glRotatef( 3.14 , 0,1,0 );
+  quat Quaternion_teta;
+  quat Quaternion_beta;
+  Quaternion_teta = quat( _angle.x , _left);
+  Quaternion_beta = quat( _angle.y , _up);
+
+  glm::mat4 RotationMatrix = quaternion::toMat4(Quaternion_teta);
+  glm::mat4 RotationMatrix = quaternion::toMat4(Quaternion_beta);
   glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
 
@@ -87,21 +100,31 @@ void Character::update(long int t){
   if(_input->isDown(GLFW_KEY_A)){  //q
     //cout << "gauche ";
     _psy += _alpha;
+    _angle.y = _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
     _psy -= _alpha;
+    _angle.y = -_alpha;
   }
 
   if(_input->isDown(GLFW_KEY_W)){  //z
     //cout << "orientation basse";
     _epsilon -= _beta;
+    _angle.x = -_beta;
+    //_angle.z -= abss(_dir.z)*_beta;
+    //_angle.x = -sin(_epsilon)*cos(_psy);
+    //_angle.z = sin(_epsilon)*sin(_psy);
   }
 
   if(_input->isDown(GLFW_KEY_S)){
     //cout << "orientation haute";
     _epsilon += _beta;
+    _angle.x = _beta;
+    //_angle.z += abss(_dir.z)*_beta;
+    //_angle.x = -sin(_epsilon)*cos(_psy);
+    //_angle.z = sin(_epsilon)*sin(_psy);
   }
 
 
@@ -135,6 +158,13 @@ void Character::update(long int t){
   }
 
 
+  if(_input->isDown(GLFW_KEY_R)){ //pour le test à enlever après
+    //cout << "reinitialisation de la position et direction";
+    _dir = glm::vec3(cos(_phi)*cos(_teta),sin(_phi),-cos(_phi)*sin(_teta));
+    _position = glm::vec3(-2, 5, -10);
+  }
+
+
   /* mouvement continue*/
   updateDir();
   _position += _speed*_dir;
@@ -147,4 +177,12 @@ void Character::accel(){
 
 bool Character::speedLimit(){
   return (_speed < _maxSpeed);
+}
+
+
+float Character::abss(float a){
+  if(a<0){
+    return -a;
+  }
+  return a;
 }

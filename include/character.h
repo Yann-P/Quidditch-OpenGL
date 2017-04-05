@@ -34,12 +34,12 @@ class Character : public Drawable {
   bool speedLimit();
   void updateDir();
   Character(const Character&) = delete;
+  float abss(float);
 
  private:
-  int _maxSpeed;
+  float _maxSpeed;
   float _accel;
   float _speed;
-  bool keys[1024];
   glm::vec3 _dir;
   int _n;       // donne l'angle de rotation de alpha et beta
   float _alpha; // mouvement de dir selon (Ox,Oz)
