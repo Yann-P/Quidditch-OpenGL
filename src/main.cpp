@@ -6,6 +6,7 @@
 #include <character.h>
 #include <GoldenSnitch.h>
 #include <obstacle.h>
+#include <fleche.h>
 
 Level level; // aie ! mais j'ai besoin de la variable dans le keycallback. à changer éventuellement
 
@@ -28,6 +29,7 @@ int main(void)
 	level.add(snitch);
 	level.add(character);
 
+
     Obstacle * obstacles[3];
 
 
@@ -36,6 +38,12 @@ int main(void)
         obstacles[i]->setCharacter(character);
         level.add(obstacles[i]);
 	}
+
+    Arrow * arrow = new Arrow(glm::vec3(0, 5, -30));
+    arrow->setCharacter(character);
+    arrow->setGoldenSnitch(snitch);
+    level.add(arrow);
+
 
 	GLFWwindow* window = glfwGetCurrentContext();
 	glfwSetKeyCallback(window, key_callback);

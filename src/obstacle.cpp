@@ -40,6 +40,7 @@ void Obstacle::setCharacter(const Character * character) {
 }
 
 void Obstacle::update(long int t) {
+    //cout << _character->getPosition().x;
     if(detectCollision(_character->getPosition()))
     {
     _angle.x+=0.1;
