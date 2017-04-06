@@ -24,6 +24,13 @@ void Broom::update(long int t) {
 	    _position.y-=0.02;
 	    _position.z+=0.2;
 	}
+    if(_input->isDown(GLFW_KEY_DOWN)) {
+        _angle.x+=0.001;
+        _angle.z+=0.0001;
+        _position.x+=0.02;
+        _position.y+=0.02;
+        _position.z-=0.2;
+    }
 
 }
 

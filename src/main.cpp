@@ -33,7 +33,7 @@ int main(void)
 
     for(int i = 0; i < 3; i++) {
         obstacles[i] = new Obstacle(glm::vec3(i - 3, i - 3, -i*10));
-        obstacles[i]->setCharacter(broom);
+        obstacles[i]->setCharacter(character);
         level.add(obstacles[i]);
 	}
 
