@@ -39,9 +39,14 @@ using namespace std;
 
 
 Arrow::Arrow(glm::vec3 position) : Drawable(
+    new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+    new Mesh("../blend/balai.blend"),
+    new Texture("../texture/texture_peut_etre.tga")
+                                       /*
     new Shader("../shaders/obstacle.v.glsl", "../shaders/obstacle.f.glsl"),
     new Mesh("../blend/cube.blend"),
     new Texture("../texture/texture_peut_etre.tga")
+                                           */
 ) {
     _position = position;
 
@@ -65,10 +70,10 @@ void Arrow::update(long int t) {
         (_character->getPosition())[2]-_goldensnitch->getPosition())[2]));
     cout << norm << endl;*/
     _angle.x=-atan((_goldensnitch->getPosition()[1]-_character->getPosition()[1]) /
-            (_goldensnitch->getPosition()[2]-_character->getPosition()[2]));
+            (_goldensnitch->getPosition()[2]-_character->getPosition()[2]))+1.57;
 
-    _angle.y=-atan((_goldensnitch->getPosition()[2]-_character->getPosition()[2]) /
-            (_goldensnitch->getPosition()[0]-_character->getPosition()[0]));
+    _angle.z=atan((_goldensnitch->getPosition()[2]-_character->getPosition()[2]) /
+            (_goldensnitch->getPosition()[0]-_character->getPosition()[0]))+1.57;
 
     /*_angle.z=atan((_goldensnitch->getPosition()[1]-_character->getPosition()[1]) /
             (_goldensnitch->getPosition()[0]-_character->getPosition()[0]));*/
