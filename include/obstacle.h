@@ -23,19 +23,18 @@
 class Obstacle: public Drawable{
 public:
 
-    bool detectCollision(glm::vec3);
+    bool detectCollision(const glm::vec3 &);
     explicit Obstacle(glm::vec3);
     void update(long int) override;
     void draw(long int) override;
-    void setCharacter(const Character *);  // TODO MODIFIER BROOM EN CHARACTER
+    void setCharacter(const Character *);
     Obstacle(const Obstacle&) = delete;
-    //Obstacle();
 
 private:
     int _height=5;
     int _width=5;
     int _length=5;
-    const Character * _character; // TODO MODIFIER BROOM EN CHARACTER
+    const Character * _character;
 
 };
 

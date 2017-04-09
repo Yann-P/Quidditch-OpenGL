@@ -1,36 +1,8 @@
-/* -*- mode: c++ -*- */
-
 /*
  * @name : fleche.h
  * @author : vtran
  */
-/*
-#ifndef FLECHE_H
-#define FLECHE_H
 
-class Fleche{
-public:
-
-    Fleche();
-
-    int* getDirection();
-    void updateDirection(int* playerPosition, int* snitchPosition);
-
-private:
-
-    int* _direction;
-
-};
-
-#endif
-*/
-
-/* -*- mode: c++ -*- */
-
-/*
- * @name : obstacle.h
- * @author : vtran
- */
 
 #ifndef __ARROW_H__
 #define __ARROW_H__
@@ -56,7 +28,6 @@ public:
     void setCharacter(const Character *);
     void setGoldenSnitch(const GoldenSnitch *);
     Arrow(const Arrow&) = delete;
-    //Obstacle();
 
 private:
     const Character * _character;

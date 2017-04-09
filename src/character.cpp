@@ -50,9 +50,6 @@ void Character::draw(long int t){
   model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
   model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
   glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
-
-
-
   glUniformMatrix4fv(viewTag, 1, GL_FALSE, glm::value_ptr(view));
   glUniformMatrix4fv(projectionTag, 1, GL_FALSE, glm::value_ptr(projection));
 

@@ -21,7 +21,7 @@ void Drawable::setInput(Input * const input) {
 
 const glm::vec3 & Drawable::getPosition() const {
 	return _position;
-};
+}
 
 const glm::vec3 & Drawable::getAngle() const {
 	return _angle;
@@ -89,8 +89,9 @@ void Drawable::makeVAO() {
 	_ibo = ibo;
 	_vao = vao;
 
-	std::cout << "drawable: ibo=" << ibo << std::endl;
-	std::cout << "drawable: vao=" << vao << std::endl;
 
 }
 
+Drawable::~Drawable() {
+
+}

@@ -7,20 +7,6 @@
 #include <stdio.h>
 using namespace std;
 
-bool Obstacle::detectCollision(glm::vec3 object)
-{
-    if (object[1]>=_position[1]-_height/2
-            && object[1]<=_position[1]+_height/2
-            && object[0]>=_position[0]-_width/2
-            && object[0]<=_position[0]+_width/2
-            && object[2]>=_position[2]-_length/2
-            && object[2]<=_position[2]+_length/2){
-        return true;
-    }
-    return false;
-}
-
-
 
 Obstacle::Obstacle(glm::vec3 position) : Drawable(
     new Shader("../shaders/obstacle.v.glsl", "../shaders/obstacle.f.glsl"),
@@ -30,21 +16,29 @@ Obstacle::Obstacle(glm::vec3 position) : Drawable(
     _position = position;
 
 }
-/*
-void Obstacle::setCharacter(const Broom * broom) {
-    _broom = broom;
+
+bool Obstacle::detectCollision(const glm::vec3 & object)
+{
+    if (object.y >= _position.y - _height/2
+            && object.y <= _position.y + _height/2
+            && object.x >= _position.x - _width/2
+            && object.x <= _position.x + _width/2
+            && object.z >= _position.z - _length/2
+            && object.z <= _position.z + _length/2){
+        return true;
+    }
+    return false;
 }
-*/
+
 void Obstacle::setCharacter(const Character * character) {
     _character = character;
 }
 
 void Obstacle::update(long int t) {
     //cout << _character->getPosition().x;
-    if(detectCollision(_character->getPosition()))
-    {
-    _angle.x+=0.1;
-    _angle.z+=0.01;
+    if(detectCollision(_character->getPosition())) {
+        _angle.x+=0.1;
+        _angle.z+=0.01;
     }
 
 }

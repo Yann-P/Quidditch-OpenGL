@@ -4,7 +4,7 @@ project(CGILabs)
 enable_testing()
 
 ###  Settings  ###{{{
-set(CMAKE_CXX_FLAGS "-std=c++11 -W -Wno-unused-variable -g -DGL_GLEXT_PROTOTYPES -I/opt/X11/include") # Don't forget to define GL_GLEXT_PROTOTYPES to ensure that the glCreateShader and other prototypes are declared. Note we could do it in the main file via "#define GL_GLEXT_PROTOTYPES" before "#include <GL/glext.h>"
+set(CMAKE_CXX_FLAGS "-std=c++11 -W -Wall -Wextra -pedantic -Wno-unused-parameter -Wno-unused-variable -g -DGL_GLEXT_PROTOTYPES -I/opt/X11/include") # Don't forget to define GL_GLEXT_PROTOTYPES to ensure that the glCreateShader and other prototypes are declared. Note we could do it in the main file via "#define GL_GLEXT_PROTOTYPES" before "#include <GL/glext.h>"
 ## setting build type to debug
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_BUILD_TYPE DEBUG)
