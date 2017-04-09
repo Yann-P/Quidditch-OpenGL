@@ -30,13 +30,18 @@ Obstacle::Obstacle(glm::vec3 position) : Drawable(
     _position = position;
 
 }
-
+/*
 void Obstacle::setCharacter(const Broom * broom) {
     _broom = broom;
 }
+*/
+void Obstacle::setCharacter(const Character * character) {
+    _character = character;
+}
 
 void Obstacle::update(long int t) {
-    if(detectCollision(_broom->getPosition()))
+    //cout << _character->getPosition().x;
+    if(detectCollision(_character->getPosition()))
     {
     _angle.x+=0.1;
     _angle.z+=0.01;

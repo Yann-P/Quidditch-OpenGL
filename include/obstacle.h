@@ -10,6 +10,7 @@
 
 #include <Camera.h>
 #include <Broom.h>
+#include <character.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -26,15 +27,15 @@ public:
     explicit Obstacle(glm::vec3);
     void update(long int) override;
     void draw(long int) override;
-    void setCharacter(const Broom *);  // TODO MODIFIER BROOM EN CHARACTER
+    void setCharacter(const Character *);  // TODO MODIFIER BROOM EN CHARACTER
     Obstacle(const Obstacle&) = delete;
     //Obstacle();
 
 private:
-    int _height=10;
-    int _width=10;
-    int _length=10;
-    const Broom * _broom; // TODO MODIFIER BROOM EN CHARACTER
+    int _height=5;
+    int _width=5;
+    int _length=5;
+    const Character * _character; // TODO MODIFIER BROOM EN CHARACTER
 
 };
 

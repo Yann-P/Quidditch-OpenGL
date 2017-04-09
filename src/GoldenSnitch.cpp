@@ -35,35 +35,35 @@ void GoldenSnitch::update(long int t) {
 	switch (dir) {
 		// GO RIGHT
 		case 0:
-		_position.x += 0.1;
+        _position.x += 0.01;
 		//_angle.x += glm::half_pi<float>();
 		break;
 
 		// GO LEFT
 		case 1:
-		_position.x -= 0.1;
+        _position.x -= 0.01;
 		//_angle.x -= glm::half_pi<float>();
 		break;
 
 		// GO UP
 		case 2:
-		_position.y += 0.1;
+        _position.y += 0.01;
 		break;
 
 		// GO DOWN
 		case 3:
-		_position.y -= 0.1;
+        _position.y -= 0.01;
 		break;
 
 		// GO FORWARD
 		case 4:
-		_position.z += 0.1;
+        _position.z += 0.01;
 		break;
 
 
 		// GO FORWARD
 		default:
-		_position.z -= 0.1;
+        _position.z -= 0.01;
 		break;
 
 	}
