@@ -3,7 +3,7 @@
 using namespace std;
 
 Level::Level() {
-	_startTime = elapsed();
+	_startTime = OGL::time();
 	_camera = Camera(glm::vec3(0.0f, 0.0f, 9.0f));
 	_input = Input();
 
@@ -12,14 +12,14 @@ Level::Level() {
 
 
 void Level::frame() {
-	long int t = elapsed() - _startTime;
+	long int t = OGL::time() - _startTime;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glEnable(GL_DEPTH_TEST);
-    glClear(GL_DEPTH_BUFFER_BIT);
     glDepthFunc(GL_LESS);
+    glEnable(GL_NORMALIZE);
 
 	for(Drawable * const obj: _drawables) {
 		obj->update(t);
@@ -41,13 +41,6 @@ void Level::add(Drawable * const obj) {
 	obj->setCamera(&_camera);
 	obj->setInput(&_input);
 	_drawables.push_back(obj);
-}
-
-
-long int Level::elapsed() const {
-	struct timeval tp;
-	gettimeofday(&tp, NULL);
-	return tp.tv_sec * 1000 + tp.tv_usec / 1000;
 }
 
 

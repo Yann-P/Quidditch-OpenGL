@@ -7,6 +7,7 @@
 #include <GoldenSnitch.h>
 #include <obstacle.h>
 #include <fleche.h>
+#include <Ground.h>
 
 Level level;
 
@@ -19,9 +20,11 @@ int main(void)
 {
 
 	OGL::init();
-	GLFWwindow* window 		= glfwGetCurrentContext();
+	long int lastFrame = OGL::time();
+	long int t;
 
-
+	GLFWwindow * window 	= glfwGetCurrentContext();
+	Ground * ground 		= new Ground;
 	Broom * broom 			= new Broom(glm::vec3(2, 2, -50));
 	GoldenSnitch * snitch 	= new GoldenSnitch(glm::vec3(-3, -3, -10));
 	Character * character 	= new Character(glm::vec3(-2, 5, -10));
@@ -42,15 +45,22 @@ int main(void)
 
 	glfwSetKeyCallback(window, key_callback);
 
+	level.add(ground);
 	level.add(arrow);
 	level.add(broom);
 	level.add(snitch);
 	level.add(character);
 
 	while (!glfwWindowShouldClose(window)) {
-		level.frame();
+		t = OGL::time();
+		if(t - lastFrame > (1/60.f) * 1000) {
+			level.frame();
+			lastFrame = t;
+		}
+		
 	}
 
+	delete ground;
 	delete broom;
 	delete snitch;
 	delete character;

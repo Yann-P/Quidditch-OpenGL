@@ -35,7 +35,6 @@ void Drawable::setAngle(const glm::vec3 & a) {
 	_angle = a;
 }
 
-
 void Drawable::makeVAO() {
 
 
