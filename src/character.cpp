@@ -26,7 +26,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _accel = glm::vec3(0.1,0.1,0.1);
 }
 
-glm::vec3 Character::getSpeed(){
+glm::vec3 Character::getSpeed() const {
   return _speed;
 }
 

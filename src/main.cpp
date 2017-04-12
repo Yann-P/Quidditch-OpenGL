@@ -41,6 +41,8 @@ int main(void)
 	arrow->setCharacter(character);
 	arrow->setGoldenSnitch(snitch);
 
+	snitch->setCharacter(character);
+
 
 
 	glfwSetKeyCallback(window, key_callback);
