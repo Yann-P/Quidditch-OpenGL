@@ -41,7 +41,7 @@ Character::Character(glm::vec3 position) : Drawable(
   cout << "x=" << _dir.x << " y=" << _dir.y << " z=" << _dir.z << endl;
 }
 
-float Character::getSpeed(){
+float Character::getSpeed() const {
   return _speed;
 }
 
