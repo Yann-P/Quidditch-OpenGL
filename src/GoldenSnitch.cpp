@@ -129,7 +129,7 @@ void GoldenSnitch::createRandomPath() {
 
 void GoldenSnitch::updatePosition(int direction, float speed) {
 
-	std::cout << "cc " << direction << " " << speed << std::endl;
+	//std::cout << "cc " << direction << " " << speed << std::endl;
 
 	switch (direction) {
 		// GO RIGHT

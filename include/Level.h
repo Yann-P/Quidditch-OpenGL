@@ -10,13 +10,17 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+#include <fstream>
+#include <cstdio>
+#include <vector>
 
 class Level
 {
 public:
 	/** @brief  Creates an empty level
 		*/
-	explicit Level();
+	explicit Level(const std::string &);
 
 	/** @brief  Called at each frame. Clears the screen, updates and draws each elements, swaps the buffer.
 		*/
@@ -42,11 +46,17 @@ public:
 
 protected:
 private:
+	void loadMap(const std::string &);
+
 	long int _startTime;
 	std::vector<Drawable *> _drawables;
 	Camera _camera;
 	Input _input;
 	bool _win = false;
+
+	int _width;
+	int _height;
+	std::vector<std::vector<int>> _obstaclesData;
 	// Character * _character;
 	// GoldenSnitch * _snitch;
 
