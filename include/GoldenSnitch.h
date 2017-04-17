@@ -20,6 +20,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <stack>
+#include <utility>
+#include "character.h"
 
 
 class GoldenSnitch: public Drawable {
@@ -27,10 +29,20 @@ public:
 	explicit GoldenSnitch(glm::vec3);
 	void update(long int) override;
 	void draw(long int) override;
+
+	void createRandomPath();
+	void updatePosition(int direction, float speed);
+
 	GoldenSnitch(const GoldenSnitch&) = delete;
 
+	/* Fuir le char ??? */
+	void setCharacter(const Character *);
+	void flee();
+	bool newMovementIsParasite(int parasitesRate);
+
 private:
-	std::stack<int> _path;
+	const Character * _character;
+	std::stack< std::pair<int, float> > _path;
 
 };
 

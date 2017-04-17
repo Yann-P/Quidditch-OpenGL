@@ -8,68 +8,167 @@
 #include "GoldenSnitch.h"
 
 
-GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
-	new Shader("../shaders/snitch.v.glsl", "../shaders/snitch.f.glsl"),
-	new Mesh("../blend/cube.blend"),
-	new Texture("../texture/texture_peut_etre.tga")
-) {
-	_position = position;
+#define MAIN_SPEED		0.05
+#define PARASITE_SPEED	0.5
+
+
+ GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
+ 	new Shader("../shaders/snitch.v.glsl", "../shaders/snitch.f.glsl"),
+ 	new Mesh("../blend/cube.blend"),
+ 	new Texture("../texture/texture_peut_etre.tga")
+ 	) {
+ 	_position = position;
+
+ }
+
+
+
+ void GoldenSnitch::setCharacter(const Character * character) {
+ 	_character = character;
+ }
+
+
+
+ void GoldenSnitch::update(long int t) {
+
+	// Random Trajectory if char isn't moving
+ 	if ( _character->getSpeed() == 0 ) {
+ 		if ( _path.empty() ) {
+ 			createRandomPath();
+ 		}
+ 	} 
+ 	else	//Run away from char if char is moving
+ 	{
+ 		flee(); 
+ 	}
+
+	int direction = _path.top().first;
+	float speed = _path.top().second;
+	_path.pop();
+
+	updatePosition(direction, speed);
+ }
+
+
+
+/*
+void GoldenSnitch::update(long int t) {
+
+	if ( _path.empty() ) {
+		createRandomPath();
+	}
+
+	int direction = _path.top().first;
+	float speed = _path.top().second;
+	_path.pop();
+
+	updatePosition(direction, speed);		
+}
+*/
+
+
+bool GoldenSnitch::newMovementIsParasite(int parasitesRate) {
+	int isParasite = rand()%100;
+	if (isParasite < parasitesRate) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+
+void GoldenSnitch::flee() {
+	glm::vec3 charPos = _character->getPosition();
+	glm::vec3 snitchPos = this->getPosition();
+
+	glm::vec3 diff = charPos-snitchPos;
+
+
+	bool isParasite = newMovementIsParasite(5);
+
+	if (isParasite) {
+		int newDir = rand()%6;
+		_path.push( std::make_pair(newDir, PARASITE_SPEED));
+	}
+	else 
+	{
+		if (diff.x < diff.y) {
+			int newDir = rand()%2;
+		} else {
+			int newDir = rand()%2+2;
+		}
+
+		int newDir = 1;
+		_path.push( std::make_pair(newDir, MAIN_SPEED));
+	}
 
 }
 
 
-void GoldenSnitch::update(long int t) {
+void GoldenSnitch::createRandomPath() {
+	int n = rand()%100 + 1000;
+	int newDir = rand()%6;
 
-	if (_path.size() == 0) {
-		int n = rand()%30 + 1;
-		int nextDir = rand()%6;
+	for (int i=0 ; i<n ; i++) {
+		int isParasite = newMovementIsParasite(5);
 
-		for (int i=0 ; i<n ; i++) {
-			_path.push(nextDir);
+		if (isParasite) {
+			newDir = rand()%6;
+			_path.push( std::make_pair(newDir, PARASITE_SPEED));
+		}
+		else 
+		{
+			_path.push( std::make_pair(newDir, MAIN_SPEED));
 		}
 	}
+}
 
-	int dir = _path.top();
-	_path.pop();
 
-	switch (dir) {
+
+
+void GoldenSnitch::updatePosition(int direction, float speed) {
+
+	std::cout << "cc " << direction << " " << speed << std::endl;
+
+	switch (direction) {
 		// GO RIGHT
 		case 0:
-        _position.x += 0.01;
+		_position.x += speed;
 		//_angle.x += glm::half_pi<float>();
 		break;
 
 		// GO LEFT
 		case 1:
-        _position.x -= 0.01;
+		_position.x -= speed;
 		//_angle.x -= glm::half_pi<float>();
 		break;
 
 		// GO UP
 		case 2:
-        _position.y += 0.01;
+		_position.y += speed;
 		break;
 
 		// GO DOWN
 		case 3:
-        _position.y -= 0.01;
+		_position.y -= speed;
 		break;
 
 		// GO FORWARD
 		case 4:
-        _position.z += 0.01;
+		_position.z += speed;
 		break;
-
 
 		// GO FORWARD
 		default:
-        _position.z -= 0.01;
+		_position.z -= speed;
 		break;
-
 	}
 
-
 }
+
+
+
 
 
 

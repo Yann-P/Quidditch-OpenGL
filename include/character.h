@@ -27,7 +27,8 @@
 class Character : public Drawable {
  public:
   explicit Character(glm::vec3);
-  float getSpeed();
+
+  float getSpeed() const;
   void draw(long int) override;
   void update(long int)override;
   void accel();
