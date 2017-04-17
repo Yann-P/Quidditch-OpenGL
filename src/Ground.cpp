@@ -1,4 +1,7 @@
 #include <Ground.h>
+#include <iostream>
+
+using namespace std;
 
 Ground::Ground() : Drawable (
 	new Shader("../shaders/ground.v.glsl", "../shaders/ground.f.glsl"),
@@ -6,14 +9,36 @@ Ground::Ground() : Drawable (
 	new Texture("../texture/texture_peut_etre.tga")
 ) {
 	_position = glm::vec3(-500, -50, -500);
-	_angle = glm::vec3(-180, 0, 0);
+	_angle = glm::vec3(89.5099, 3.16, 0);
 }
 
 void Ground::update(long int) {
+    if(_input->isDown(GLFW_KEY_UP)){
+    _angle.x += 0.01;
+    }
+    if(_input->isDown(GLFW_KEY_DOWN)){
+    _angle.x -= 0.01;
+    }
+    if(_input->isDown(GLFW_KEY_LEFT)){
+    _angle.y += 0.01;
+    }
+    if(_input->isDown(GLFW_KEY_RIGHT)){
+    _angle.y -= 0.01;
+    }
+
+    if(_input->isDown(GLFW_KEY_G)){ 
+    cout << "L'angle en y vaut : " << _angle.y << endl;
+    cout << "L'angle en x vaut : " << _angle.x << endl;
+
+    endl(cout);
+    endl(cout);
+    }
 }
 
 
 void Ground::draw(long int) {
+    glDisable(GL_CULL_FACE);
+
 	glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, *_texture);
     glUseProgram(*_shader);
@@ -47,4 +72,7 @@ void Ground::draw(long int) {
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindVertexArray(0);
+
+    glEnable(GL_CULL_FACE);
+
 }

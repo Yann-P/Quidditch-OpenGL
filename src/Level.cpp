@@ -4,7 +4,7 @@ using namespace std;
 
 Level::Level() {
 	_startTime = OGL::time();
-	_camera = Camera(glm::vec3(0.0f, 0.0f, 9.0f));
+	_camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f));
 	_input = Input();
 
 	glClearColor(0.1, 0.1, 0.1, 1);
