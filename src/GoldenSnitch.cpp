@@ -8,8 +8,8 @@
 #include "GoldenSnitch.h"
 
 
-#define MAIN_SPEED		0.05
-#define PARASITE_SPEED	0.5
+#define MAIN_SPEED		0.3
+#define PARASITE_SPEED	3
 #define MAXDISTANCE 100
 
 
@@ -33,7 +33,6 @@
  void GoldenSnitch::update(long int t) {
 
  	float d = getDistanceFromCharacter();
- 	std::cout << d << std::endl;
 
 	// Random Trajectory if char isn't moving
  	if ( _character->getSpeed() == 0 || d>MAXDISTANCE) {
