@@ -6,7 +6,7 @@ Ground::Ground() : Drawable (
 	new Texture("../texture/texture_peut_etre.tga")
 ) {
 	_position = glm::vec3(-500, -50, -500);
-	_angle = glm::vec3(181, 0, 0);
+	_angle = glm::vec3(-180, 0, 0);
 }
 
 void Ground::update(long int) {
