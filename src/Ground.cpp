@@ -13,26 +13,7 @@ Ground::Ground() : Drawable (
 }
 
 void Ground::update(long int) {
-    if(_input->isDown(GLFW_KEY_UP)){
-    _angle.x += 0.01;
-    }
-    if(_input->isDown(GLFW_KEY_DOWN)){
-    _angle.x -= 0.01;
-    }
-    if(_input->isDown(GLFW_KEY_LEFT)){
-    _angle.y += 0.01;
-    }
-    if(_input->isDown(GLFW_KEY_RIGHT)){
-    _angle.y -= 0.01;
-    }
-
-    if(_input->isDown(GLFW_KEY_G)){ 
-    cout << "L'angle en y vaut : " << _angle.y << endl;
-    cout << "L'angle en x vaut : " << _angle.x << endl;
-
-    endl(cout);
-    endl(cout);
-    }
+    
 }
 
 
