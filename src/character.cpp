@@ -18,8 +18,8 @@ using namespace std;
 
 Character::Character(glm::vec3 position) : Drawable(
   new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
-  new Mesh("../blend/character_test.blend"),
-  new Texture("../texture/texture_peut_etre.tga")
+  new Mesh("../blend/persoFinal.obj"),
+  new Texture("../texture/tex_char.tga")
 ){
   _position = position;
   //_speed = glm::vec3(1,1,1);
@@ -69,7 +69,7 @@ void Character::draw(long int t){
   glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 1000.0f));
 
   glm::mat4 model;
-  
+
 
   model = glm::translate(model, _position);
   //model = glm::rotate(model, -_angle.x, _right);
@@ -179,7 +179,7 @@ void Character::update(long int t){
   }
 
 
-  
+
 
 
   /* mouvement continue*/
@@ -210,8 +210,8 @@ void Character::update(long int t){
   }
 
   _camera->setPosition(_position - glm::vec3(10,10,10) * _dir /*glm::vec3(0,0,10.0)*/);
-  
-  
+
+
 }
 
 void Character::accel(){
