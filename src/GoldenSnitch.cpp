@@ -10,6 +10,7 @@
 
 #define MAIN_SPEED		0.05
 #define PARASITE_SPEED	0.5
+#define MAXDISTANCE 100
 
 
  GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
@@ -31,8 +32,11 @@
 
  void GoldenSnitch::update(long int t) {
 
+ 	float d = getDistanceFromCharacter();
+ 	std::cout << d << std::endl;
+
 	// Random Trajectory if char isn't moving
- 	if ( _character->getSpeed() == 0 ) {
+ 	if ( _character->getSpeed() == 0 || d>MAXDISTANCE) {
  		if ( _path.empty() ) {
  			createRandomPath();
  		}
@@ -51,20 +55,16 @@
 
 
 
-/*
-void GoldenSnitch::update(long int t) {
+float GoldenSnitch::getDistanceFromCharacter() {
+	glm::vec3 charPos = _character->getPosition();
+	glm::vec3 snitchPos = this->getPosition();
 
-	if ( _path.empty() ) {
-		createRandomPath();
-	}
-
-	int direction = _path.top().first;
-	float speed = _path.top().second;
-	_path.pop();
-
-	updatePosition(direction, speed);		
+	float d = 0;
+	d += (charPos.x - snitchPos.x)*(charPos.x - snitchPos.x);
+	d += (charPos.y - snitchPos.y)*(charPos.y - snitchPos.y);
+	d += (charPos.z - snitchPos.z)*(charPos.z - snitchPos.z);
+	return sqrt(d);
 }
-*/
 
 
 bool GoldenSnitch::newMovementIsParasite(int parasitesRate) {
@@ -129,7 +129,7 @@ void GoldenSnitch::createRandomPath() {
 
 void GoldenSnitch::updatePosition(int direction, float speed) {
 
-	std::cout << "cc " << direction << " " << speed << std::endl;
+	//std::cout << "cc " << direction << " " << speed << std::endl;
 
 	switch (direction) {
 		// GO RIGHT
