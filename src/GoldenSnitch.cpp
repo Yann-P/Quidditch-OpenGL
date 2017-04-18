@@ -25,9 +25,11 @@
 
  void GoldenSnitch::update(long int t) {
 
+
  	_position.x += cos(t/1000);
  	_position.y += sin(t/500) * 0.5;
  	_position.z += sin(t/800);
+
  }
 
 

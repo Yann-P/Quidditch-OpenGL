@@ -33,7 +33,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _phi = 0;
   _psy = _teta;
   _epsilon = _phi;
-  _angle.y += 3.14;
+  _angle.x -= PI/2;
   _dir = glm::vec3(cos(_phi)*cos(_teta),/*sin(_phi)*/0,-cos(_phi)*sin(_teta)); //direction dans la quelle regarde le personnage vitesse selon cette axe
   _up = glm::vec3(-sin(_phi)*cos(_teta),cos(_phi),sin(_phi)*sin(_teta));
   _right = glm::vec3(sin(_teta), 0 , -cos(_teta) );
@@ -72,8 +72,9 @@ void Character::draw(long int t){
 
 
   model = glm::translate(model, _position);
-  //model = glm::rotate(model, -_angle.x, _right);
-  model = glm::rotate(model, _angle.y, _up);
+  model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
+  model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
+  model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
 
 
 
@@ -112,17 +113,17 @@ void Character::update(long int t){
     //cout << "gauche ";
     _psy += _alpha;
     _camera->Yaw -= _alpha * 360 / (2*PI) ;
-    _angle.y += _alpha;
+    _angle.z += _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
     _psy -= _alpha;
     _camera->Yaw += _alpha * 360 / (2*PI);
-    _angle.y -= _alpha;
+    _angle.z -= _alpha;
   }
 
-  if(_input->isDown(GLFW_KEY_W)){  //z
+  if(_input->isDown(GLFW_KEY_S)){  
     //cout << "orientation basse";
 
     _position.y -= 0.5;
@@ -135,7 +136,7 @@ void Character::update(long int t){
     //_angle.z = sin(_epsilon)*sin(_psy);
   }
 
-  if(_input->isDown(GLFW_KEY_S)){
+  if(_input->isDown(GLFW_KEY_W)){ //z
     //cout << "orientation haute";
 
     _position.y += 0.5;
@@ -209,7 +210,7 @@ void Character::update(long int t){
     _angle.x = 0;
   }
 
-  _camera->setPosition(_position - glm::vec3(10,10,10) * _dir /*glm::vec3(0,0,10.0)*/);
+  _camera->setPosition(_position - glm::vec3(15,10,15) * _dir + glm::vec3(0,8,0) /*glm::vec3(0,0,10.0)*/);
 
 
 }
