@@ -22,6 +22,7 @@
 #include <stack>
 #include <utility>
 #include "character.h"
+#include <math.h>
 
 
 class GoldenSnitch: public Drawable {
@@ -39,6 +40,7 @@ public:
 	void setCharacter(const Character *);
 	void flee();
 	bool newMovementIsParasite(int parasitesRate);
+	float getDistanceFromCharacter();
 
 private:
 	const Character * _character;
