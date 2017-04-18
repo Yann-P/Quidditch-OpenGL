@@ -24,7 +24,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _position = position;
   //_speed = glm::vec3(1,1,1);
   _speed = 0;
-  _maxSpeed = 1;
+  _maxSpeed = 2;
   _accel = 0.05;
   _n = 100;
   _alpha = (2 * PI) / (float) _n;
