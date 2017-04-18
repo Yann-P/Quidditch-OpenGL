@@ -13,7 +13,6 @@ Ground::Ground() : Drawable (
 }
 
 void Ground::update(long int) {
-    
 }
 
 
