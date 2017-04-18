@@ -8,7 +8,7 @@ Ground::Ground() : Drawable (
 	new Mesh("../blend/plane.blend"),
 	new Texture("../texture/texture_peut_etre.tga")
 ) {
-	_position = glm::vec3(-500, -50, -500);
+	_position = glm::vec3(-500, 0, -500);
 	_angle = glm::vec3(89.5099, 3.16, 0);
 }
 

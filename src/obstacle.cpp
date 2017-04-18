@@ -8,19 +8,21 @@
 using namespace std;
 
 
-Obstacle::Obstacle(glm::vec3 position) : Drawable(
+Obstacle::Obstacle(int gX, int gZ, int size) : Drawable(
     new Shader("../shaders/obstacle.v.glsl", "../shaders/obstacle.f.glsl"),
     new Mesh("../blend/cube.blend"),
     new Texture("../texture/texture_peut_etre.tga")
 ) {
+    glm::vec3 position = glm::vec3(gX, size+24, gZ);
     _position = position;
+    _height = size; // 1*
 
 }
 
 bool Obstacle::detectCollision(const glm::vec3 & object)
 {
-    if (object.y >= _position.y - _height/2
-            && object.y <= _position.y + _height/2
+    if (object.y >= _position.y - _height*2/2
+            && object.y <= _position.y + _height*2/2
             && object.x >= _position.x - _width/2
             && object.x <= _position.x + _width/2
             && object.z >= _position.z - _length/2
@@ -37,8 +39,9 @@ void Obstacle::setCharacter(const Character * character) {
 void Obstacle::update(long int t) {
     //cout << _character->getPosition().x;
     if(detectCollision(_character->getPosition())) {
-        _angle.x+=0.1;
-        _angle.z+=0.01;
+        std::cout << "hit" << std::endl;
+        //_angle.z+=0.1;
+        //_position.x+=0.1;
     }
 
 }
@@ -64,6 +67,10 @@ void Obstacle::draw(long int t) {
     model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
     model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
     model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
+
+
+    model = glm::scale(model, glm::vec3(1,_height,1)); // /5
+
     glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
 
