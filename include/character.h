@@ -36,8 +36,10 @@ class Character : public Drawable {
   void updateDir();
   Character(const Character&) = delete;
   float abss(float);
+  void makeCollision();
 
  private:
+  bool _collision; // si le perso est dans un obstacle mamene
   float _maxSpeed;
   float _accel;
   float _speed;

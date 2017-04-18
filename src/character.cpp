@@ -24,8 +24,8 @@ Character::Character(glm::vec3 position) : Drawable(
   _position = position;
   //_speed = glm::vec3(1,1,1);
   _speed = 0;
-  _maxSpeed = 1;
-  _accel = 0.05;
+  _maxSpeed = 5;
+  _accel = 0.005;
   _n = 100;
   _alpha = (2 * PI) / (float) _n;
   _beta = (2 * PI) / (float) _n;
@@ -39,6 +39,15 @@ Character::Character(glm::vec3 position) : Drawable(
   _right = glm::vec3(sin(_teta), 0 , -cos(_teta) );
   _left = glm::vec3(-sin(_teta), 0 , cos(_teta) ); //pas utile mais on sait jamais.
   cout << "x=" << _dir.x << " y=" << _dir.y << " z=" << _dir.z << endl;
+  _collision = false;
+}
+
+void Character::makeCollision() {
+    if(_collision==false){
+        _position -= _dir * glm::vec3(10,0,10);
+        _speed = 0;
+    }
+
 }
 
 float Character::getSpeed() const {
@@ -199,15 +208,7 @@ void Character::update(long int t){
 
   if(_input->isDown(GLFW_KEY_R)){ //pour le test à enlever après
     //cout << "reinitialisation de la position et direction";
-    _dir = glm::vec3(cos(_phi)*cos(_teta),sin(_phi),-cos(_phi)*sin(_teta));
-    _position = glm::vec3(-2, 5, -10);
-    _psy = _teta;
-    _epsilon = _phi;
-    _speed = 0;
-    _camera->Yaw = -90 ;
-    _camera->Pitch = 0;
-    _angle.y = 3.14;
-    _angle.x = 0;
+    _collision = false;
   }
 
   _camera->setPosition(_position - glm::vec3(15,10,15) * _dir + glm::vec3(0,8,0) /*glm::vec3(0,0,10.0)*/);

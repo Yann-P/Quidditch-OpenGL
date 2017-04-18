@@ -32,7 +32,7 @@ bool Obstacle::detectCollision(const glm::vec3 & object)
     return false;
 }
 
-void Obstacle::setCharacter(const Character * character) {
+void Obstacle::setCharacter(Character * character) {
     _character = character;
 }
 
@@ -42,6 +42,7 @@ void Obstacle::update(long int t) {
         std::cout << "hit" << std::endl;
         //_angle.z+=0.1;
         //_position.x+=0.1;
+        _character->makeCollision();
     }
 
 }
