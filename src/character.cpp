@@ -18,8 +18,8 @@ using namespace std;
 
 Character::Character(glm::vec3 position) : Drawable(
   new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
-  new Mesh("../blend/balai.blend"),
-  new Texture("../texture/texture_peut_etre.tga")
+  new Mesh("../blend/persoFinal.obj"),
+  new Texture("../texture/tex_char.tga")
 ){
   _position = position;
   //_speed = glm::vec3(1,1,1);
