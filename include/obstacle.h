@@ -24,14 +24,14 @@ class Obstacle: public Drawable{
 public:
 
     bool detectCollision(const glm::vec3 &);
-    explicit Obstacle(glm::vec3);
+    explicit Obstacle(int,int,int);
     void update(long int) override;
     void draw(long int) override;
     void setCharacter(const Character *);
     Obstacle(const Obstacle&) = delete;
 
 private:
-    int _height=5;
+    int _height;//=5;
     int _width=5;
     int _length=5;
     const Character * _character;

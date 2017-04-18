@@ -25,15 +25,15 @@ int main(void)
 
 	GLFWwindow * window 	= glfwGetCurrentContext();
 	Ground * ground 		= new Ground;
-	Broom * broom 			= new Broom(glm::vec3(2, 2, -50));
-	GoldenSnitch * snitch 	= new GoldenSnitch(glm::vec3(-3, -3, -10));
-	Character * character 	= new Character(glm::vec3(-2, 5, -10));
-	Arrow * arrow 			= new Arrow(glm::vec3(0, 5, -30));
+	Broom * broom 			= new Broom(glm::vec3(2, 50, -50));
+	GoldenSnitch * snitch 	= new GoldenSnitch(glm::vec3(-3, 50, -10));
+	Character * character 	= new Character(glm::vec3(-2, 50, -10));
+	Arrow * arrow 			= new Arrow(glm::vec3(0, 50, -30));
 
 	Obstacle * obstacles[3];
 
 	for(int i = 0; i < 3; i++) {
-		obstacles[i] = new Obstacle(glm::vec3(i - 3, i - 3, -i*10));
+		obstacles[i] = new Obstacle(i - 3, -i*10, 20);
 		obstacles[i]->setCharacter(character);
 		level.add(obstacles[i]);
 	}
