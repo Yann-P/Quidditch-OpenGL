@@ -9,5 +9,5 @@ out vec4 out_color;
 
 void main()
 {
-	out_color=mix(vec4(Normal, 1), vec4(1,1,0,1), 0.5);
+	out_color=mix(vec4(Normal, 1), vec4(0,0,0,1), 0.5);
 }

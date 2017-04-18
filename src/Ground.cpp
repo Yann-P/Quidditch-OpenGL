@@ -6,7 +6,7 @@ using namespace std;
 Ground::Ground() : Drawable (
 	new Shader("../shaders/ground.v.glsl", "../shaders/ground.f.glsl"),
 	new Mesh("../blend/plane.blend"),
-	new Texture("../texture/texture_peut_etre.tga")
+	new Texture("../texture/gazon.tga")
 ) {
 	_position = glm::vec3(-500, 0, -500);
 	_angle = glm::vec3(89.5099, 3.16, 0);

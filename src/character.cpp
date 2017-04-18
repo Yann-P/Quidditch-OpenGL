@@ -18,11 +18,10 @@ using namespace std;
 
 Character::Character(glm::vec3 position) : Drawable(
   new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
-  new Mesh("../blend/balai.blend"),
-  new Texture("../texture/texture_peut_etre.tga")
+  new Mesh("../blend/persoFinal.obj"),
+  new Texture("../texture/tex_char.tga")
 ){
   _position = position;
-  //_speed = glm::vec3(1,1,1);
   _speed = 0;
   _maxSpeed = 5;
   _accel = 0.005;
@@ -33,7 +32,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _phi = 0;
   _psy = _teta;
   _epsilon = _phi;
-  _angle.x -= PI/2;
+  _angle.y = PI;
   _dir = glm::vec3(cos(_phi)*cos(_teta),/*sin(_phi)*/0,-cos(_phi)*sin(_teta)); //direction dans la quelle regarde le personnage vitesse selon cette axe
   _up = glm::vec3(-sin(_phi)*cos(_teta),cos(_phi),sin(_phi)*sin(_teta));
   _right = glm::vec3(sin(_teta), 0 , -cos(_teta) );
@@ -44,7 +43,7 @@ Character::Character(glm::vec3 position) : Drawable(
 
 void Character::makeCollision() {
     if(_collision==false){
-        _position -= _dir * glm::vec3(10,0,10);
+        _position -= _dir * glm::vec3(5,0,5);
         _speed = 0;
     }
 
@@ -86,22 +85,6 @@ void Character::draw(long int t){
   model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
 
 
-
-
-
-
-
-
-  //model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
-  //glRotatef( 3.14 , 0,1,0 );
-  //glRotatef( 3.14 , 0,1,0 );
-  /*quat Quaternion_teta;
-  quat Quaternion_beta;
-  Quaternion_teta = quat( _angle.x , _left);
-  Quaternion_beta = quat( _angle.y , _up);
-
-  glm::mat4 RotationMatrix = quaternion::toMat4(Quaternion_teta);
-  glm::mat4 RotationMatrix = quaternion::toMat4(Quaternion_beta);*/
   glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
   glUniformMatrix4fv(viewTag, 1, GL_FALSE, glm::value_ptr(view));
   glUniformMatrix4fv(projectionTag, 1, GL_FALSE, glm::value_ptr(projection));
@@ -122,56 +105,28 @@ void Character::update(long int t){
     //cout << "gauche ";
     _psy += _alpha;
     _camera->Yaw -= _alpha * 360 / (2*PI) ;
-    _angle.z += _alpha;
+    _angle.y += _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
     _psy -= _alpha;
     _camera->Yaw += _alpha * 360 / (2*PI);
-    _angle.z -= _alpha;
+    _angle.y -= _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_S)){  
-    //cout << "orientation basse";
-
-    _position.y -= 0.5;
-
-    /*_epsilon -= _beta;
-    _angle.x -= _beta;
-    _camera->Pitch -= _beta * 360 / (2*PI);*/
-    //_angle.z -= abss(_dir.z)*_beta;
-    //_angle.x = -sin(_epsilon)*cos(_psy);
-    //_angle.z = sin(_epsilon)*sin(_psy);
+    if(_position.y > 25) {
+      _position.y -= 0.5;
+      
+    }
   }
 
   if(_input->isDown(GLFW_KEY_W)){ //z
-    //cout << "orientation haute";
-
     _position.y += 0.5;
-    
-    /*_epsilon += _beta;
-    _angle.x += _beta;
-    _camera->Pitch += _beta * 360 / (2*PI);*/
-    //_angle.z += abss(_dir.z)*_beta;
-    //_angle.x = -sin(_epsilon)*cos(_psy);
-    //_angle.z = sin(_epsilon)*sin(_psy);
-  }
-
-
-   /*
-  if(_input->isDown(GLFW_KEY_Z)) {  //w
-    //cout << "bas ";
-    _position.y -= _speed.y;
-  }
-
-  if(_input->isDown(GLFW_KEY_X)){
-    //cout << "haut ";
-    _position.y += _speed.y;
-  }*/
+   }
 
   if(_input->isDown(GLFW_KEY_LEFT_SHIFT)){
-    //cout<< "brake"
     if(_speed<=0){
       _speed = 0;
     } else {

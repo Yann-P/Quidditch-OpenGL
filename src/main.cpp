@@ -2,7 +2,7 @@
 #include <Mesh.h>
 #include <Shader.h>
 #include <Level.h>
-#include <Broom.h>
+#include <Dome.h>
 #include <character.h>
 #include <GoldenSnitch.h>
 #include <obstacle.h>
@@ -25,18 +25,19 @@ int main(void)
 
 	GLFWwindow * window 	= glfwGetCurrentContext();
 	Ground * ground 		= new Ground;
-	Broom * broom 			= new Broom(glm::vec3(2, 50, -50));
+	//Broom * broom 			= new Broom(glm::vec3(2, 50, -50));
+	Dome * dome 			= new Dome(glm::vec3(0, 0, 0));
 	GoldenSnitch * snitch 	= new GoldenSnitch(glm::vec3(-3, 50, -10));
     Character * character 	= new Character(glm::vec3(-20, 50, -10));
 	Arrow * arrow 			= new Arrow(glm::vec3(0, 50, -30));
 
-	Obstacle * obstacles[3];
+	// Obstacle * obstacles[3];
 
-	for(int i = 0; i < 3; i++) {
-		obstacles[i] = new Obstacle(i - 3, -i*10, 20);
-		obstacles[i]->setCharacter(character);
-		level.add(obstacles[i]);
-	}
+	// for(int i = 0; i < 3; i++) {
+	// 	obstacles[i] = new Obstacle(i - 3, -i*10, 20);
+	// 	obstacles[i]->setCharacter(character);
+	// 	level.add(obstacles[i]);
+	// }
 
 	arrow->setCharacter(character);
 	arrow->setGoldenSnitch(snitch);
@@ -49,9 +50,10 @@ int main(void)
 
 	level.add(ground);
 	level.add(arrow);
-	level.add(broom);
+	level.add(dome);
 	level.add(snitch);
 	level.add(character);
+	level.load(character);
 
 	while (!glfwWindowShouldClose(window)) {
 		t = OGL::time();
@@ -63,12 +65,11 @@ int main(void)
 	}
 
 	delete ground;
-	delete broom;
+	delete dome;
 	delete snitch;
 	delete character;
 	delete arrow;
 
-	for(int i = 0; i < 3; i++) delete obstacles[i];
 
 	glfwTerminate();
 

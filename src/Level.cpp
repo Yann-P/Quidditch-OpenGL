@@ -9,6 +9,8 @@ Level::Level(const std::string & map) {
 
 	loadMap(map);
 
+	
+
 	glClearColor(0.1, 0.1, 0.1, 1);
 }
 
@@ -34,7 +36,7 @@ void Level::loadMap(const std::string & map) {
 
 	for (int l = 0; l < _height; l++) {
 
-		std::vector<int> line;
+		std::vector<int> * line = new std::vector<int>;
 		
 		for(int c = 0; c < _width; c++) {
 		
@@ -43,12 +45,26 @@ void Level::loadMap(const std::string & map) {
 			else
 				std::getline(file, data_s, '\t');
 
-			line.push_back(std::stoi(data_s));
+			line->push_back(std::stoi(data_s));
 
 		}
 
 		_obstaclesData.push_back(line);
 
+	}
+}
+
+void Level::load(Character * c) {
+	for(int y = 0; y < _height; y++) {
+		
+		for(int x = 0; x < _width; x++) {
+
+			if(_obstaclesData[y]->at(x) == 0)
+				continue;
+			Obstacle * obstacle = new Obstacle(x * 10, y * 10, _obstaclesData[y]->at(x));
+			obstacle->setCharacter(c);
+		 	add(obstacle);
+		 }
 	}
 }
 
@@ -83,23 +99,6 @@ void Level::add(Drawable * const obj) {
 	obj->setInput(&_input);
 	_drawables.push_back(obj);
 }
-
-
-// À DÉBUGGER!
-
-// bool Level::collisionWithObstacle() const {
-
-//   vector<Obstacle>::iterator itBegin= _obstacles.begin();
-//   vector<Obstacle>::iterator itEnd= _obstacles.end();
-
-//   while(itBegin!=itEnd){
-//     if(!((*itBegin).detectCollision(_seeker->getPosition()) ) )
-//       {
-// 	return true;
-//       }
-//     ++itBegin;
-//   }
-// }
 
 
 void Level::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode) {

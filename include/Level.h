@@ -6,6 +6,8 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include <Drawable.h>
+#include <obstacle.h>
+#include <character.h>
 #include <Input.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -37,6 +39,11 @@ public:
 		*/
 	void key_callback(GLFWwindow*, int, int, int, int);
 
+
+	/** @brief charge les obstacles de la map. requiert le personnage **/
+	void load(Character *);
+
+
 	/** @brief  Forbids copy
 		*/
 	Level(const Level&) = delete;
@@ -56,7 +63,7 @@ private:
 
 	int _width;
 	int _height;
-	std::vector<std::vector<int>> _obstaclesData;
+	std::vector<std::vector<int>*> _obstaclesData;
 	// Character * _character;
 	// GoldenSnitch * _snitch;
 
