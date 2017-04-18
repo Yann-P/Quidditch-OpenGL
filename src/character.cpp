@@ -33,7 +33,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _phi = 0;
   _psy = _teta;
   _epsilon = _phi;
-  _angle.x -= PI/2;
+  _angle.y = PI;
   _dir = glm::vec3(cos(_phi)*cos(_teta),/*sin(_phi)*/0,-cos(_phi)*sin(_teta)); //direction dans la quelle regarde le personnage vitesse selon cette axe
   _up = glm::vec3(-sin(_phi)*cos(_teta),cos(_phi),sin(_phi)*sin(_teta));
   _right = glm::vec3(sin(_teta), 0 , -cos(_teta) );
@@ -113,14 +113,14 @@ void Character::update(long int t){
     //cout << "gauche ";
     _psy += _alpha;
     _camera->Yaw -= _alpha * 360 / (2*PI) ;
-    _angle.z += _alpha;
+    _angle.y += _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
     _psy -= _alpha;
     _camera->Yaw += _alpha * 360 / (2*PI);
-    _angle.z -= _alpha;
+    _angle.y -= _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_S)){  

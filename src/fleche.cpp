@@ -12,7 +12,7 @@ using namespace std;
 
 Arrow::Arrow(glm::vec3 position) : Drawable(
 	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
-	new Mesh("../blend/balai.blend"),
+	new Mesh("../blend/arrow.blend"),
 	new Texture("../texture/texture_peut_etre.tga")
 
 ) {
