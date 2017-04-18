@@ -2,14 +2,55 @@
 
 using namespace std;
 
-Level::Level() {
+Level::Level(const std::string & map) {
 	_startTime = OGL::time();
 	_camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f));
 	_input = Input();
 
+	loadMap(map);
+
 	glClearColor(0.1, 0.1, 0.1, 1);
 }
 
+
+void Level::loadMap(const std::string & map) {
+
+	std::ifstream file;
+	file.open(map); // open a file
+	if (!file.good()) {
+		std::cerr << "impossible de charger la map au chemin " << map << std::endl;
+		throw "erreur parsemap";
+	}
+
+	string width_s;
+	string height_s;
+	string data_s;
+
+	std::getline(file, width_s, ' ');
+	std::getline(file, height_s, '\n');
+	_width = std::stoi(width_s);
+	_height = std::stoi(height_s);
+
+
+	for (int l = 0; l < _height; l++) {
+
+		std::vector<int> line;
+		
+		for(int c = 0; c < _width; c++) {
+		
+			if(c == _width - 1)
+				std::getline(file, data_s, '\n');
+			else
+				std::getline(file, data_s, '\t');
+
+			line.push_back(std::stoi(data_s));
+
+		}
+
+		_obstaclesData.push_back(line);
+
+	}
+}
 
 void Level::frame() {
 	long int t = OGL::time() - _startTime;

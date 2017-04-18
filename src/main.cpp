@@ -9,7 +9,7 @@
 #include <fleche.h>
 #include <Ground.h>
 
-Level level;
+Level level("../maps/1.txt");
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
