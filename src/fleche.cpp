@@ -60,6 +60,7 @@ void Arrow::draw(long int t) {
 	model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
 	model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
 	model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
+	model = glm::scale(model, glm::vec3(3, 3, 3));
 	glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
 

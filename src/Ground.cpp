@@ -20,7 +20,9 @@ void Ground::draw(long int) {
     glDisable(GL_CULL_FACE);
 
 	glActiveTexture(GL_TEXTURE0);
+
     glBindTexture(GL_TEXTURE_2D, *_texture);
+    
     glUseProgram(*_shader);
     glUniform1i(glGetUniformLocation(*_shader, "textureBalai"), 0);
 
