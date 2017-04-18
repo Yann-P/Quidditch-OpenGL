@@ -10,7 +10,7 @@
 
 #define MAIN_SPEED		0.3
 #define PARASITE_SPEED	3
-#define MAXDISTANCE 100
+#define MAXDISTANCE 	100
 
 
  GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
@@ -23,6 +23,14 @@
  }
 
 
+ void GoldenSnitch::update(long int t) {
+
+ 	_position.x += cos(t/1000);
+ 	_position.y += sin(t/500) * 0.5;
+ 	_position.z += sin(t/800);
+ }
+
+
 
  void GoldenSnitch::setCharacter(const Character * character) {
  	_character = character;
@@ -30,27 +38,6 @@
 
 
 
- void GoldenSnitch::update(long int t) {
-
- 	float d = getDistanceFromCharacter();
-
-	// Random Trajectory if char isn't moving
- 	if ( _character->getSpeed() == 0 || d>MAXDISTANCE) {
- 		if ( _path.empty() ) {
- 			createRandomPath();
- 		}
- 	} 
- 	else	//Run away from char if char is moving
- 	{
- 		flee(); 
- 	}
-
-	int direction = _path.top().first;
-	float speed = _path.top().second;
-	_path.pop();
-
-	updatePosition(direction, speed);
- }
 
 
 
@@ -64,6 +51,7 @@ float GoldenSnitch::getDistanceFromCharacter() {
 	d += (charPos.z - snitchPos.z)*(charPos.z - snitchPos.z);
 	return sqrt(d);
 }
+
 
 
 bool GoldenSnitch::newMovementIsParasite(int parasitesRate) {
