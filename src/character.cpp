@@ -24,7 +24,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _position = position;
   //_speed = glm::vec3(1,1,1);
   _speed = 0;
-  _maxSpeed = 0.5;
+  _maxSpeed = 1;
   _accel = 0.05;
   _n = 100;
   _alpha = (2 * PI) / (float) _n;
@@ -123,7 +123,7 @@ void Character::update(long int t){
     _angle.z -= _alpha;
   }
 
-  if(_input->isDown(GLFW_KEY_W)){  //z
+  if(_input->isDown(GLFW_KEY_S)){  
     //cout << "orientation basse";
 
     _position.y -= 0.1;
@@ -136,7 +136,7 @@ void Character::update(long int t){
     //_angle.z = sin(_epsilon)*sin(_psy);
   }
 
-  if(_input->isDown(GLFW_KEY_S)){
+  if(_input->isDown(GLFW_KEY_W)){ //z
     //cout << "orientation haute";
 
     _position.y += 0.1;
@@ -210,7 +210,7 @@ void Character::update(long int t){
     _angle.x = 0;
   }
 
-  _camera->setPosition(_position - glm::vec3(10,10,10) * _dir + glm::vec3(0,10,0) /*glm::vec3(0,0,10.0)*/);
+  _camera->setPosition(_position - glm::vec3(15,10,15) * _dir + glm::vec3(0,8,0) /*glm::vec3(0,0,10.0)*/);
 
 
 }
