@@ -1,4 +1,7 @@
 #include <Ground.h>
+#include <iostream>
+
+using namespace std;
 
 Ground::Ground() : Drawable (
 	new Shader("../shaders/ground.v.glsl", "../shaders/ground.f.glsl"),
@@ -6,7 +9,7 @@ Ground::Ground() : Drawable (
 	new Texture("../texture/texture_peut_etre.tga")
 ) {
 	_position = glm::vec3(-500, -50, -500);
-	_angle = glm::vec3(-180, 0, 0);
+	_angle = glm::vec3(89.5099, 3.16, 0);
 }
 
 void Ground::update(long int) {
@@ -14,6 +17,8 @@ void Ground::update(long int) {
 
 
 void Ground::draw(long int) {
+    glDisable(GL_CULL_FACE);
+
 	glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, *_texture);
     glUseProgram(*_shader);
@@ -47,4 +52,7 @@ void Ground::draw(long int) {
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindVertexArray(0);
+
+    glEnable(GL_CULL_FACE);
+
 }
