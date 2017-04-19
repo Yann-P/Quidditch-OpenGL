@@ -31,10 +31,17 @@ void Arrow::setGoldenSnitch(const GoldenSnitch * goldensnitch) {
 void Arrow::update(long int t) {
 
 	const glm::vec3 & snitchPos = _goldensnitch->getPosition();
-	const glm::vec3 & charPos = _character->getPosition();
+	const glm::vec3 & charPos = _character->getPosition() + glm::vec3(0,10,0);
+	glm::vec3 vect = glm::vec3( snitchPos.x-charPos.x , snitchPos.y-charPos.y , snitchPos.z-charPos.z);
 
-	_angle.x = -atan((snitchPos.y - charPos.y) / (snitchPos.z - charPos.z))+1.57;
-	_angle.z = atan((snitchPos.z - charPos.z) / (snitchPos.x - charPos.x))+1.57;
+	_angle.y = 0;
+	_angle.x = M_PI/2 - atan(vect.y/ vect.z);//-atan(vect.y/ vect.z)+1.57;
+	_angle.z = 4*M_PI/3 + atan(vect.z / vect.x) + M_PI/11;//atan(vect.z / vect.x)+1.57;
+	
+	if(vect.x<0){
+		_angle.z += M_PI;
+	}
+
 	_position = charPos;
 
 }
@@ -58,8 +65,8 @@ void Arrow::draw(long int t) {
 	glm::mat4 model;
 	model = glm::translate(model, _position);
 	model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
-	model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
 	model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
+	model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
 	model = glm::scale(model, glm::vec3(3, 3, 3));
 	glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
