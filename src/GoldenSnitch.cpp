@@ -6,7 +6,8 @@
  */
 
 #include "GoldenSnitch.h"
-
+#include <stdio.h>
+using namespace std;
 
 #define MAIN_SPEED		0.3
 #define PARASITE_SPEED	3
@@ -19,18 +20,36 @@
  	new Texture("../texture/texture_peut_etre.tga")
  	) {
  	_position = position;
+    _fixed = false;
 
+ }
+
+ bool GoldenSnitch::detectCollision(const glm::vec3 & object)
+ {
+     if (GoldenSnitch::getDistanceFromCharacter()<10){
+         return true;
+     }
+     return false;
  }
 
 
  void GoldenSnitch::update(long int t) {
-
+    if(_input->isDown(GLFW_KEY_P)){
+       _fixed = !_fixed;
+    }
+    if (!_fixed){
  	//if(_input->isDown(GLFW_KEY_T)){
 	 	_position.x += cos(t/2000);
 	 	_position.y += sin(t/1000) * 0.5;
 	 	_position.z += sin(t/1600);
+    }
 	 //}
-
+        if(detectCollision(_character->getPosition())) {
+            std::cout << "FIN DE JEU" << std::endl;
+            _position.x = _character->getPosition().x;
+            _position.y = _character->getPosition().y;
+            _position.z = _character->getPosition().z;
+ }
  }
 
 
@@ -120,7 +139,6 @@ void GoldenSnitch::createRandomPath() {
 void GoldenSnitch::updatePosition(int direction, float speed) {
 
 	//std::cout << "cc " << direction << " " << speed << std::endl;
-
 	switch (direction) {
 		// GO RIGHT
 		case 0:
