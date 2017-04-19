@@ -36,7 +36,6 @@ private:
     int _length=15;
     Character *  _character;
     static Mesh * _o_mesh;
-
 };
 
 #endif

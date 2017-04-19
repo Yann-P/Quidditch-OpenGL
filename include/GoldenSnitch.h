@@ -33,7 +33,7 @@ public:
 
 	void createRandomPath();
 	void updatePosition(int direction, float speed);
-
+    bool detectCollision(const glm::vec3 &);
 	GoldenSnitch(const GoldenSnitch&) = delete;
 
 	/* Fuir le char ??? */
@@ -45,6 +45,7 @@ public:
 private:
 	const Character * _character;
 	std::stack< std::pair<int, float> > _path;
+    bool _fixed;
 
 };
 

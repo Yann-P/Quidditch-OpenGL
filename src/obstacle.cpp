@@ -10,12 +10,12 @@ using namespace std;
 Mesh * Obstacle::_o_mesh = new Mesh("../blend/wood_tower.blend");
 
 Obstacle::Obstacle(int gX, int gZ, int size) : Drawable(
-    new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
+    new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
     _o_mesh,
     new Texture("../texture/t_C.tga")
 ) {
     glm::vec3 position = glm::vec3(gX, size, gZ);
-    _position = position + glm::vec3(0, 10, 0);
+    _position = position + glm::vec3(0, 0, 0);
     _angle = glm::vec3(glm::radians(-90.f), 0.f, 0.f);
     _height = size * 70; // 1*
 
