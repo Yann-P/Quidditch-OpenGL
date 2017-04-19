@@ -49,7 +49,7 @@ class Character : public Drawable {
   glm::vec3 _left;
   int _n;       // donne l'angle de rotation de alpha et beta
   float _alpha; // mouvement de dir selon (Ox,Oz)
-  float _beta; // mouvement de dir selon (Ox,Oy)
+  GLfloat _beta; // mouvement de dir selon (Ox,Oy)
   float _teta; // axe origine de dir selon (Ox,Oz) (peut etre optionnel depend de si on veut le garder pour revenir a une position initiale)
   float _phi; // axe origine de dir selon (Oy,Oz) (peut etre optionnel depend de si on veut le garder pour revenir a une position initiale)
   float _psy; // ecart actuel d'angle avec _teta psy = teta + k*alpha

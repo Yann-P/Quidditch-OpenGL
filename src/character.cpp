@@ -27,7 +27,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _accel = 0.005;
   _n = 100;
   _alpha = (2 * PI) / (float) _n;
-  _beta = (2 * PI) / (float) _n;
+  _beta = -90;
   _teta = PI / (float) 2;
   _phi = 0;
   _psy = _teta;
@@ -72,7 +72,13 @@ void Character::draw(long int t){
   GLuint viewTag = glGetUniformLocation(*_shader, "view");
   GLuint projectionTag = glGetUniformLocation(*_shader, "projection");
 
-  _camera->updateCameraVectors();
+  //if(!(_input->isDown(GLFW_KEY_F))){
+    //cout << "réalise le focus sur le snitch";
+    //_camera->Pitch = -10.0f;
+    _camera->Yaw = _beta;
+    _camera->updateCameraVectors();
+  //}
+  
   glm::mat4 view(_camera->getViewMatrix());
   glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 1000.0f));
 
@@ -104,14 +110,14 @@ void Character::update(long int t){
   if(_input->isDown(GLFW_KEY_A)){  //q
     //cout << "gauche ";
     _psy += _alpha;
-    _camera->Yaw -= _alpha * 360 / (2*PI) ;
+    _beta -= _alpha * 360 / (2*PI) ;
     _angle.y += _alpha;
   }
 
   if(_input->isDown(GLFW_KEY_D)){
     //cout << "droite ";
     _psy -= _alpha;
-    _camera->Yaw += _alpha * 360 / (2*PI);
+    _beta += _alpha * 360 / (2*PI);
     _angle.y -= _alpha;
   }
 
@@ -151,7 +157,7 @@ void Character::update(long int t){
   updateDir();
   _position += _speed*_dir;
 
-  if(_input->isDown(GLFW_KEY_F)){
+  if(_input->isDown(GLFW_KEY_I)){
     cout << "teta=" << _psy << " phi=" << _epsilon << endl;
     cout << "up.x=" << _up.x << " up.y=" << _up.y << " up.z=" << _up.z << endl;  // up bouge avec la rotation selon son axe
     cout << "right.x=" << _right.x << " right.y=" << _right.y << " right.z=" << _right.z << endl;
@@ -160,6 +166,7 @@ void Character::update(long int t){
     endl(cout);
     endl(cout);
   }
+
 
   if(_input->isDown(GLFW_KEY_R)){ //pour le test à enlever après
     //cout << "reinitialisation de la position et direction";

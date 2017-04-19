@@ -31,19 +31,28 @@ void Arrow::setGoldenSnitch(const GoldenSnitch * goldensnitch) {
 void Arrow::update(long int t) {
 
 	const glm::vec3 & snitchPos = _goldensnitch->getPosition();
-	const glm::vec3 & charPos = _character->getPosition() + glm::vec3(0,10,0);
-	glm::vec3 vect = glm::vec3( snitchPos.x-charPos.x , snitchPos.y-charPos.y , snitchPos.z-charPos.z);
+	const glm::vec3 & charPos = _character->getPosition();
+	glm::vec3 vect = glm::vec3( snitchPos.x-charPos.x , snitchPos.y-charPos.y + 10 , snitchPos.z-charPos.z);
+	const glm::vec3 & camPos = _camera->getPosition();
+	glm::vec3 vect2 = glm::vec3( snitchPos.x - camPos.x , snitchPos.y - camPos.y , snitchPos.z - camPos.z);
 
 	_angle.y = 0;
 	_angle.x = M_PI/2 - atan(vect.y/ vect.z);//-atan(vect.y/ vect.z)+1.57;
-	_angle.z = 4*M_PI/3 + atan(vect.z / vect.x) + M_PI/11;//atan(vect.z / vect.x)+1.57;
+	_angle.z = 4*M_PI/3 + M_PI/11 + atan(vect.z / vect.x) ;//atan(vect.z / vect.x)+1.57;
 	
 	if(vect.x<0){
 		_angle.z += M_PI;
 	}
 
-	_position = charPos;
-
+	_position = charPos + glm::vec3(0,10,0);
+	/*if(_input->isDown(GLFW_KEY_F)){
+    //cout << "réalise le focus sur le snitch";
+	    _camera->Pitch = atan(vect2.y / vect2.z) * 360 / (2*M_PI) ;
+	    _camera->Yaw = atan(vect2.z / vect2.x) * 360 / (2*M_PI);
+	    //if(vect2.x<0){
+		//	_camera->Pitch += M_PI;
+		//}
+	}*/
 }
 
 
@@ -58,6 +67,10 @@ void Arrow::draw(long int t) {
 	GLuint modelTag = glGetUniformLocation(*_shader, "model");
 	GLuint viewTag = glGetUniformLocation(*_shader, "view");
 	GLuint projectionTag = glGetUniformLocation(*_shader, "projection");
+
+	if(_input->isDown(GLFW_KEY_F)){
+		_camera->updateCameraVectors();
+	}
 
 	glm::mat4 view(_camera->getViewMatrix());
 	glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 1000.0f));
