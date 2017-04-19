@@ -7,15 +7,17 @@
 #include <stdio.h>
 using namespace std;
 
+Mesh * Obstacle::_o_mesh = new Mesh("../blend/wood_tower.blend");
 
 Obstacle::Obstacle(int gX, int gZ, int size) : Drawable(
-    new Shader("../shaders/obstacle.v.glsl", "../shaders/obstacle.f.glsl"),
-    new Mesh("../blend/cube.blend"),
-    new Texture("../texture/texture_peut_etre.tga")
+    new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
+    _o_mesh,
+    new Texture("../texture/t_C.tga")
 ) {
     glm::vec3 position = glm::vec3(gX, size, gZ);
-    _position = position;
-    _height = size; // 1*
+    _position = position + glm::vec3(0, 10, 0);
+    _angle = glm::vec3(glm::radians(-90.f), 0.f, 0.f);
+    _height = size * 70; // 1*
 
 }
 
@@ -61,7 +63,7 @@ void Obstacle::draw(long int t) {
     GLuint projectionTag = glGetUniformLocation(*_shader, "projection");
 
     glm::mat4 view(_camera->getViewMatrix());
-    glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 1000.0f));
+    glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 10000.0f));
 
     glm::mat4 model;
     model = glm::translate(model, _position);
@@ -70,7 +72,7 @@ void Obstacle::draw(long int t) {
     model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
 
 
-    model = glm::scale(model, glm::vec3(1,_height,1)); // /5
+    model = glm::scale(model, glm::vec3(3.f, 3.f, 10.f)); // /5
 
     glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 

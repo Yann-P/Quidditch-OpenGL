@@ -32,9 +32,10 @@ public:
 
 private:
     int _height;//=5;
-    int _width=5;
-    int _length=5;
+    int _width=15;
+    int _length=15;
     Character *  _character;
+    static Mesh * _o_mesh;
 
 };
 

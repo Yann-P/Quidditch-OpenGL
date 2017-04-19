@@ -123,7 +123,7 @@ void Character::update(long int t){
   }
 
   if(_input->isDown(GLFW_KEY_LEFT_SHIFT)){  // =>  SHIFT
-    if(_position.y > 30) {
+    if(_position.y > 10) {
       _position.y -= 0.5;
       
     }

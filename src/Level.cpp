@@ -61,7 +61,7 @@ void Level::load(Character * c) {
 
 			if(_obstaclesData[y]->at(x) == 0)
 				continue;
-			Obstacle * obstacle = new Obstacle(x * 10, y * 10, _obstaclesData[y]->at(x));
+			Obstacle * obstacle = new Obstacle(x * 50, y * 50, _obstaclesData[y]->at(x));
 			obstacle->setCharacter(c);
 		 	add(obstacle);
 		 }

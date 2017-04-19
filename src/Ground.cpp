@@ -8,8 +8,14 @@ Ground::Ground() : Drawable (
 	new Mesh("../blend/plane.blend"),
 	new Texture("../texture/gazon.tga")
 ) {
-	_position = glm::vec3(-1000, 0, -1000);
+	_position = glm::vec3(-5000, 0, -5000);
 	_angle = glm::vec3(glm::radians(90.f), 0, 0); //glm::vec3(89.5099, 3.16, 0);
+
+    glBindTexture(GL_TEXTURE_2D, *_texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 }
 
 void Ground::update(long int) {
@@ -22,6 +28,7 @@ void Ground::draw(long int) {
 	glActiveTexture(GL_TEXTURE0);
 
     glBindTexture(GL_TEXTURE_2D, *_texture);
+
     
     glUseProgram(*_shader);
     glUniform1i(glGetUniformLocation(*_shader, "textureBalai"), 0);
@@ -40,7 +47,7 @@ void Ground::draw(long int) {
     model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
     model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
 
-    model = glm::scale(model, glm::vec3(2000, 2000, 1));
+    model = glm::scale(model, glm::vec3(10000, 10000, 1));
 
     glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 

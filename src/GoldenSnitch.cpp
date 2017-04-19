@@ -182,7 +182,7 @@ void GoldenSnitch::draw(long int t) {
 	GLuint projectionTag = glGetUniformLocation(*_shader, "projection");
 
 	glm::mat4 view(_camera->getViewMatrix());
-	glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 1000.0f));
+	glm::mat4 projection(glm::perspective(_camera->getZoom(), (float)1000/(float)800, 0.1f, 10000.0f));
 
 	glm::mat4 model;
 	model = glm::translate(model, _position);
