@@ -6,6 +6,7 @@
  */
 
 #include "GoldenSnitch.h"
+#include <cmath>
 
 
 #define MAIN_SPEED		0.3
@@ -14,9 +15,9 @@
 
 
  GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
- 	new Shader("../shaders/snitch.v.glsl", "../shaders/snitch.f.glsl"),
- 	new Mesh("../blend/cube.blend"),
- 	new Texture("../texture/texture_peut_etre.tga")
+ 	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+ 	new Mesh("../blend/snitch.blend"),
+ 	new Texture("../texture/snitch.tga")
  	) {
  	_position = position;
 
@@ -27,7 +28,14 @@
 
 
  	_position.x += cos(t/2000);
- 	_position.y += sin(t/1000) * 0.5;
+ 	if (_position.y >=25)
+ 	{
+ 		_position.y += sin(t/1000) * 0.5;
+ 	}
+ 	else
+ 	{
+ 		_position.y = 25;	
+ 	}
  	_position.z += sin(t/1600);
 
  }

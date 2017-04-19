@@ -17,15 +17,15 @@
 using namespace std;
 
 Character::Character(glm::vec3 position) : Drawable(
-  new Shader("../shaders/character.v.glsl", "../shaders/character.f.glsl"),
-  new Mesh("../blend/persoFinal.obj"),
+  new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+  new Mesh("../blend/persoFinal.blend"),
   new Texture("../texture/tex_char.tga")
 ){
   _position = position;
   _speed = 0;
   _maxSpeed = 5;
-  _accel = 0.005;
-  _n = 100;
+  _accel = 0.05;
+  _n = 300;
   _alpha = (2 * PI) / (float) _n;
   _beta = (2 * PI) / (float) _n;
   _teta = PI / (float) 2;
@@ -33,6 +33,7 @@ Character::Character(glm::vec3 position) : Drawable(
   _psy = _teta;
   _epsilon = _phi;
   _angle.y = PI;
+  _angle.x = -PI/2;
   _dir = glm::vec3(cos(_phi)*cos(_teta),/*sin(_phi)*/0,-cos(_phi)*sin(_teta)); //direction dans la quelle regarde le personnage vitesse selon cette axe
   _up = glm::vec3(-sin(_phi)*cos(_teta),cos(_phi),sin(_phi)*sin(_teta));
   _right = glm::vec3(sin(_teta), 0 , -cos(_teta) );
@@ -80,8 +81,8 @@ void Character::draw(long int t){
 
 
   model = glm::translate(model, _position);
-  model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
   model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
+  model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
   model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
 
 
