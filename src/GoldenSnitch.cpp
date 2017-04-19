@@ -6,6 +6,7 @@
  */
 
 #include "GoldenSnitch.h"
+#include <cmath>
 
 
 #define MAIN_SPEED		0.3
@@ -15,8 +16,8 @@
 
  GoldenSnitch::GoldenSnitch(glm::vec3 position) : Drawable(
  	new Shader("../shaders/snitch.v.glsl", "../shaders/snitch.f.glsl"),
- 	new Mesh("../blend/cube.blend"),
- 	new Texture("../texture/texture_peut_etre.tga")
+ 	new Mesh("../blend/snitch.blend"),
+ 	new Texture("../texture/snitch.tga")
  	) {
  	_position = position;
 
@@ -25,11 +26,17 @@
 
  void GoldenSnitch::update(long int t) {
 
- 	//if(_input->isDown(GLFW_KEY_T)){
-	 	_position.x += cos(t/2000);
-	 	_position.y += sin(t/1000) * 0.5;
-	 	_position.z += sin(t/1600);
-	 //}
+
+ 	_position.x += cos(t/2000);
+ 	if (_position.y >=25)
+ 	{
+ 		_position.y += sin(t/1000) * 0.5;
+ 	}
+ 	else
+ 	{
+ 		_position.y = 25;	
+ 	}
+ 	_position.z += sin(t/1600);
 
  }
 
@@ -182,6 +189,7 @@ void GoldenSnitch::draw(long int t) {
 	model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
 	model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
 	model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
+	model = glm::scale(model, glm::vec3(2, 2, 2));
 	glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
 

@@ -11,7 +11,7 @@ using namespace std;
 
 
 Arrow::Arrow(glm::vec3 position) : Drawable(
-	new Shader("../shaders/balai.v.glsl", "../shaders/balai.f.glsl"),
+	new Shader("../shaders/fleche.v.glsl", "../shaders/fleche.f.glsl"),
 	new Mesh("../blend/arrow.blend"),
 	new Texture("../texture/texture_peut_etre.tga")
 
@@ -58,6 +58,8 @@ void Arrow::update(long int t) {
 
 void Arrow::draw(long int t) {
 
+	glDisable(GL_CULL_FACE);
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, *_texture);
 	glUseProgram(*_shader);
@@ -93,6 +95,8 @@ void Arrow::draw(long int t) {
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
+
+	glEnable(GL_CULL_FACE);
 }
 
 

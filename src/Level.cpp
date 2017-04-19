@@ -11,7 +11,7 @@ Level::Level(const std::string & map) {
 
 	
 
-	glClearColor(0.1, 0.1, 0.1, 1);
+	glClearColor(0.257f, 0.36f, 0.596f, 1);
 }
 
 
@@ -70,7 +70,7 @@ void Level::load(Character * c) {
 
 void Level::frame() {
 	long int t = OGL::time() - _startTime;
-
+	glClearColor(0.257f, 0.36f, 0.596f, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);

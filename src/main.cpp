@@ -28,7 +28,7 @@ int main(void)
 	//Broom * broom 			= new Broom(glm::vec3(2, 50, -50));
 	Dome * dome 			= new Dome(glm::vec3(0, 0, 0));
 	GoldenSnitch * snitch 	= new GoldenSnitch(glm::vec3(-3, 50, -10));
-    Character * character 	= new Character(glm::vec3(-20, 50, -10));
+    Character * character 	= new Character(glm::vec3(-20, 60, -10));
 	Arrow * arrow 			= new Arrow(glm::vec3(0, 50, -30));
 
 	// Obstacle * obstacles[3];

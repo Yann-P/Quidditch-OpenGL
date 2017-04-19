@@ -13,7 +13,7 @@ Obstacle::Obstacle(int gX, int gZ, int size) : Drawable(
     new Mesh("../blend/cube.blend"),
     new Texture("../texture/texture_peut_etre.tga")
 ) {
-    glm::vec3 position = glm::vec3(gX, size+24, gZ);
+    glm::vec3 position = glm::vec3(gX, size, gZ);
     _position = position;
     _height = size; // 1*
 
