@@ -11,9 +11,9 @@ using namespace std;
 
 
 Arrow::Arrow(glm::vec3 position) : Drawable(
-	new Shader("../shaders/fleche.v.glsl", "../shaders/fleche.f.glsl"),
+	new Shader("../shaders/arrow.v.glsl", "../shaders/arrow.f.glsl"),
 	new Mesh("../blend/arrow.blend"),
-	new Texture("../texture/texture_peut_etre.tga")
+	new Texture("../texture/arrow.tga")
 
 ) {
 	_position = position;

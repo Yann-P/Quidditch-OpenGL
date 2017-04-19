@@ -31,14 +31,6 @@ int main(void)
     Character * character 	= new Character(glm::vec3(-20, 60, -10));
 	Arrow * arrow 			= new Arrow(glm::vec3(0, 50, -30));
 
-	// Obstacle * obstacles[3];
-
-	// for(int i = 0; i < 3; i++) {
-	// 	obstacles[i] = new Obstacle(i - 3, -i*10, 20);
-	// 	obstacles[i]->setCharacter(character);
-	// 	level.add(obstacles[i]);
-	// }
-
 	arrow->setCharacter(character);
 	arrow->setGoldenSnitch(snitch);
 

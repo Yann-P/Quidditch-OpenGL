@@ -11,7 +11,7 @@ Dome::Dome(glm::vec3 position) : Drawable(
 	new Mesh("../blend/dome.blend"),
 	new Texture("../texture/sky_texture.tga")
 ) {
-	_position = position;
+	_position = position + glm::vec3(0, 0, 500);
 	_angle = glm::vec3(glm::radians(-90.f), 0, 0);
 
 }
@@ -45,7 +45,7 @@ void Dome::draw(long int t) {
 	model = glm::rotate(model, _angle.x, glm::vec3(1.f, 0, 0));
 	model = glm::rotate(model, _angle.y, glm::vec3(0, 1.f,0));
 	model = glm::rotate(model, _angle.z, glm::vec3(0, 0, 1.f));
-	model = glm::scale(model, glm::vec3(800, 800, 800));
+	model = glm::scale(model, glm::vec3(1600, 1600, 1600));
 	glUniformMatrix4fv(modelTag, 1, GL_FALSE, glm::value_ptr(model));
 
 
