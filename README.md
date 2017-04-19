@@ -1,5 +1,9 @@
 Quidditch (OpenGL project)
 =========================
+
+
+![quidditch](quidditch.png)
+
 # About this project
 
 ## Game concept
