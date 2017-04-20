@@ -11,9 +11,11 @@ Level::Level(const std::string & map) {
 
 	
 
-	glClearColor(0.257f, 0.36f, 0.596f, 1);
 }
 
+void Level::init() {
+	glClearColor(0.257f, 0.36f, 0.596f, 1);
+}
 
 void Level::loadMap(const std::string & map) {
 
