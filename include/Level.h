@@ -24,6 +24,10 @@ public:
 		*/
 	explicit Level(const std::string &);
 
+	/** @brief  Init context
+		*/
+    void init();
+
 	/** @brief  Called at each frame. Clears the screen, updates and draws each elements, swaps the buffer.
 		*/
 	void frame();

@@ -12,6 +12,7 @@ LINK_DIRECTORIES("~/local_install/lib")
 LINK_DIRECTORIES("/usr/local/lib")
 INCLUDE_DIRECTORIES("/usr/local/include")
 INCLUDE_DIRECTORIES("~/local_install/include")
+include_directories(include lib)
 ###  Settings  ###}}}i
 
 ###  OpenGL  ###{{{
@@ -47,7 +48,6 @@ find_package(PNG REQUIRED)
 include_directories(${PNG_INCLUDE_DIR})
 
 
-include_directories(./include ./lib)
 file (GLOB_RECURSE source_files src/* include/* lib/*)
 
 add_executable(Quidditch ${source_files})

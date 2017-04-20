@@ -1,13 +1,13 @@
-#include <openglAPI.h>
-#include <Mesh.h>
-#include <Shader.h>
-#include <Level.h>
-#include <Dome.h>
-#include <character.h>
-#include <GoldenSnitch.h>
-#include <obstacle.h>
-#include <fleche.h>
-#include <Ground.h>
+#include "openglAPI.h"
+#include "Mesh.h"
+#include "Shader.h"
+#include "Level.h"
+#include "Dome.h"
+#include "character.h"
+#include "GoldenSnitch.h"
+#include "obstacle.h"
+#include "fleche.h"
+#include "Ground.h"
 
 Level level("../maps/1.txt");
 
@@ -20,6 +20,7 @@ int main(void)
 {
 
 	OGL::init();
+    level.init();
 	long int lastFrame = OGL::time();
 	long int t;
 
